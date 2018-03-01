@@ -11,6 +11,7 @@
 * ОЗУ: 2 ГБ
 ## Требования к программному обеспечению
 * Windows 7 x32/x64, Windows 8, Windows 8.1, Windows 10
+* Microsoft Visual C++ 2015 Redistributable (x64) - 14.0.2412 или  Microsoft Visual C++ 2015 Redistributable (x64) - 14.0.24215 в зависимости от разрядности операционной системы
 ## Средства разработки программного обеспечения
 * Microsoft Visual Studio 2015 ver. 14.0.25425.01 Update 3
 * QT ver. 5.7.0
