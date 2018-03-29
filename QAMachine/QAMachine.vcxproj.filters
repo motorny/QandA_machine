@@ -75,4 +75,8 @@
       <Filter>Header Files\fileHandle</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Q_A_set.txt" />
+    <Text Include="rejected.txt" />
+  </ItemGroup>
 </Project>

@@ -169,6 +169,10 @@
     <ClInclude Include="IQAMachineCore.h" />
     <ClInclude Include="QAPlainTextHandle.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Q_A_set.txt" />
+    <Text Include="rejected.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

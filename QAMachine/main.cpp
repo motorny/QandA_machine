@@ -1,16 +1,39 @@
 #include <iostream>
 #include "QAMachineCore.h"
+#include <iostream>
+#include <locale>
+#include <Windows.h>
 
 int main(int argc, char* argv[])
 {
+  setlocale(LC_ALL, "Russian");
+  SetConsoleCP(1251);
+  SetConsoleOutputCP(1251);
+  /*
+  
+  
+  ÓÑÒÀÍÎÂÈÒÜ ØÐÈÔÒ ËÞÑÈÄÀ ÊÎÍÑÎËÅ
+  
+  
+  */
     QAMachineCore core;
 
-    if (argc > 1)
-    {
-        std::cout << argv[1] << std::endl;
-    }
+    core.LearnFromTSV("Q_A_set.txt", "rejected.txt");
 	
-	std::cout << "QAMachine" << std::endl;
+	//std::cout << "QAMachine" << std::endl;
+
+    std::cout << "LETS GO\n\n" << std::endl;
+  std::string str;
+  while (std::getline(std::cin, str)) 
+  {
+    //std::cout << "Question: " <<  str;
+    core.askQuestion(str);
+    std::cout << core.getAnswer() << std::endl;
+
+  }
+
+
+
 
 	return EXIT_SUCCESS;
 }   

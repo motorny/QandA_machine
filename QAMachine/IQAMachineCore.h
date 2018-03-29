@@ -3,8 +3,10 @@
 #pragma once
 
 #include <string>
+#include <fstream>
 
 #include "QADataBase.h"
+
 
 class IQAMachineCore
 {
@@ -14,7 +16,7 @@ public:
 	
 	virtual std::string getAnswer(void) = 0;
 
-	virtual void setDb(QADatabase personCorpus) = 0;
+	virtual void LearnFromTSV(const std::string & fileName, const std::string &rejectedWordsFileName) = 0;
 
     virtual ~IQAMachineCore() {};
 };
