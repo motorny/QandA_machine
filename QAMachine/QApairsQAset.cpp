@@ -68,5 +68,5 @@ double QApairsQAset::QAPair::GetDistFromQuery(QAVocabulary &vocabulary, std::vec
         val += vocabulary[queryWordIndeces[iQueryInd]].idf;
     }
   }
-  return val;
+  return val * invEuqlidSize;
 }
