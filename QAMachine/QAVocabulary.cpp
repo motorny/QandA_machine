@@ -29,6 +29,9 @@ void QAVocabulary::GenerateVocabularyFromQAset(const string & dataFileName, cons
     questionsCnt++;
     question = pairStr.substr(0, pairStr.find(';'));
     answer = pairStr.substr(pairStr.find(';') + 1);
+    size_t fNotSp = answer.find_first_not_of(" \t");
+    if (fNotSp != -1)
+      answer = answer.substr(fNotSp);
     pairsQAset.AddPair(question, answer);
 
     size_t start = question.find_first_not_of(delimetrs), end = 0;

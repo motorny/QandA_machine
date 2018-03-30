@@ -64,8 +64,20 @@ void QAMachineCore::askQuestion(std::string question)
 std::string QAMachineCore::getAnswer()
 {
   if (answerInd == -1)
-    return "There is similar question!";
-  return "Most sutable question: " + pairsQAset[answerInd].question + "\nAnswer: " + pairsQAset[answerInd].answer + "\n________________________";
+  {
+    return "Can't find answer!";
+  }
+  return pairsQAset[answerInd].answer;
+}
+
+void QAMachineCore::PrintAnswer(void)
+{
+  if (answerInd == -1)
+  {
+    cout << "There is no similar question, so we can't get answer!"<< endl;
+  }
+  cout << "Most sutable question: " + pairsQAset[answerInd].question + "\nAnswer: " + pairsQAset[answerInd].answer + "\n________________________" <<endl;
+
 }
 
 void QAMachineCore::LearnFromTSV(const string & fileName, const std::string &rejectedWordsFileName)

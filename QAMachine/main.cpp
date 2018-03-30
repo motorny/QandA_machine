@@ -20,9 +20,16 @@ int main(int argc, char* argv[])
   std::string str = "";
   while (std::getline(std::cin, str))
   {
+<<<<<<< HEAD
     std::cout << "Question: " <<  str << std::endl;
     core.askQuestion(str);
     std::cout << core.getAnswer() << std::endl << std::endl;
+=======
+    
+    core.askQuestion(str);
+    core.PrintAnswer();
+
+>>>>>>> 3a3256796855188833e7df837dbdefebf2d3c40f
   }
 
   return EXIT_SUCCESS;
