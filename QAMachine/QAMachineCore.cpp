@@ -63,7 +63,6 @@ void QAMachineCore::askQuestion(std::string question)
 
 std::string QAMachineCore::getAnswer()
 {
-  // TODO
   if (answerInd == -1)
     return "There is similar question!";
   return "Most sutable question: " + pairsQAset[answerInd].question + "\nAnswer: " + pairsQAset[answerInd].answer + "\n________________________";

@@ -5,12 +5,8 @@
 #include <vector>
 
 #include "IQAMachineCore.h"
-
 #include "QAVocabulary.h"
 #include "QApairsQAset.h"
-
-
-
 
 
 class QAMachineCore : public IQAMachineCore
@@ -36,7 +32,5 @@ private:
 
   int answerInd = 0;
 };
-
-
 
 #endif // !__QUESTION_ANSWER_MACHINE_CORE__

@@ -1,18 +1,18 @@
-#include "QAVocabulary.h"
-
-
 #include <map>
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+
+#include "QAVocabulary.h"
+
 using namespace std;
 
 const string QAVocabulary::delimetrs = " ,.!?";
 
-
 void QAVocabulary::GenerateVocabularyFromQAset(const string & dataFileName, const string & rejectedWordsFileName, QApairsQAset & pairsQAset)
 {
   ifstream qAPairsIFS(dataFileName);
+
   if (!qAPairsIFS.is_open()) {
     cout << "Could not open QuestionsAnswers pairs file: " << dataFileName << endl;
     return;
@@ -71,10 +71,21 @@ void QAVocabulary::GenerateVocabularyFromQAset(const string & dataFileName, cons
 
 int QAVocabulary::GetWordInd(const string & word)
 {
-  /*
-  TODO:
-  Lexicographical binary search
-  */
+  //int left = 0, right = vocabulary.size() - 1;
+  //int middle;
+
+  //while (right >= left)
+  //{
+  //  middle = left + (right - left) / 2;
+
+  //  if (vocabulary[middle].str == word)
+  //    return static_cast<int>(middle);
+
+  //  if (vocabulary[middle].str < word)
+  //    right = middle - 1;
+  //  else
+  //    left = middle + 1;
+  //}
   for (size_t ind = 0; ind < vocabulary.size(); ++ind)
   {
     if (word == vocabulary[ind].str)
@@ -82,6 +93,8 @@ int QAVocabulary::GetWordInd(const string & word)
       return (int)ind;
     }
   }
+  
+  //std::cout << "NOT FOUND IN DICT" << endl;
   return -1;
 }
 
