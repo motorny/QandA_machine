@@ -13,21 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\adapter">
-      <UniqueIdentifier>{7af6bc03-53b9-4272-b606-798fce06baea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\fileHandle">
-      <UniqueIdentifier>{0bce3ba3-68a8-4cec-856d-8fb55bd8991f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\databaseHandle">
-      <UniqueIdentifier>{81a0947e-b71f-422b-8e17-e9f31508a28f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\databaseHandle">
-      <UniqueIdentifier>{78a636fe-6f9d-489d-aa35-7e830dcf4ccd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\fileHandle">
-      <UniqueIdentifier>{d9c53c27-262f-4ded-80dc-8f9d1c82cc35}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -35,15 +20,6 @@
     </ClCompile>
     <ClCompile Include="QAMachineCore.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QADataBase.cpp">
-      <Filter>Source Files\databaseHandle</Filter>
-    </ClCompile>
-    <ClCompile Include="QACsvHandle.cpp">
-      <Filter>Source Files\fileHandle</Filter>
-    </ClCompile>
-    <ClCompile Include="QAPlainTextHandle.cpp">
-      <Filter>Source Files\fileHandle</Filter>
     </ClCompile>
     <ClCompile Include="QAVocabulary.cpp">
       <Filter>Source Files</Filter>
@@ -53,32 +29,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="QADataBase.h">
-      <Filter>Header Files\databaseHandle</Filter>
-    </ClInclude>
     <ClInclude Include="QAMachineCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QAPlainTextHandle.h">
-      <Filter>Header Files\fileHandle</Filter>
-    </ClInclude>
     <ClInclude Include="IQAMachineCore.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IAdapter.h">
-      <Filter>Header Files\adapter</Filter>
-    </ClInclude>
-    <ClInclude Include="IDatabase.h">
-      <Filter>Header Files\databaseHandle</Filter>
-    </ClInclude>
-    <ClInclude Include="IFileHandle.h">
-      <Filter>Header Files\fileHandle</Filter>
-    </ClInclude>
-    <ClInclude Include="QACsvHandle.h">
-      <Filter>Header Files\fileHandle</Filter>
-    </ClInclude>
-    <ClInclude Include="IFileHandleFactory.h">
-      <Filter>Header Files\fileHandle</Filter>
     </ClInclude>
     <ClInclude Include="QAVocabulary.h">
       <Filter>Header Files</Filter>

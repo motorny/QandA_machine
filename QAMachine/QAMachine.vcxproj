@@ -117,7 +117,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
@@ -125,6 +125,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,24 +154,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="QACsvHandle.cpp" />
-    <ClCompile Include="QADataBase.cpp" />
     <ClCompile Include="QAMachineCore.cpp" />
     <ClCompile Include="QApairsQAset.cpp" />
-    <ClCompile Include="QAPlainTextHandle.cpp" />
     <ClCompile Include="QAVocabulary.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IAdapter.h" />
-    <ClInclude Include="IFileHandleFactory.h" />
-    <ClInclude Include="QACsvHandle.h" />
-    <ClInclude Include="QADataBase.h" />
-    <ClInclude Include="IFileHandle.h" />
-    <ClInclude Include="IDatabase.h" />
     <ClInclude Include="QAMachineCore.h" />
     <ClInclude Include="IQAMachineCore.h" />
     <ClInclude Include="QApairsQAset.h" />
-    <ClInclude Include="QAPlainTextHandle.h" />
     <ClInclude Include="QAVocabulary.h" />
   </ItemGroup>
   <ItemGroup>
