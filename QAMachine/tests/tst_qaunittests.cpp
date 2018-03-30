@@ -18,6 +18,8 @@ public:
 private Q_SLOTS:
     void VocabularyTest_data();
     void VocabularyTest();
+    void VocabularyRejectionTest_data();
+    void VocabularyRejectionTest();
 };
 
 
@@ -48,6 +50,33 @@ void QAUnitTests::VocabularyTest()
   QAVocabulary v;
   QApairsQAset pSet;
   v.GenerateVocabularyFromQAset("testFiles/vocabTest.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
+  QFETCH(std::string, word);
+  QFETCH(bool, result);
+  QCOMPARE((v.GetWordInd(word) != -1), result);
+}
+
+void QAUnitTests::VocabularyRejectionTest_data()
+{
+  QTest::addColumn<std::string>("word");
+  QTest::addColumn<bool>("result");
+
+  QTest::newRow("vocab_rej_data_1") << std::string("привет") << true;
+  QTest::newRow("vocab_rej_data_2") << std::string("компьютер") << true;
+  QTest::newRow("vocab_rej_data_3") << std::string("обработка") << true;
+                       
+  QTest::newRow("vocab_rej_data_4") << std::string("программирование") << false;
+  QTest::newRow("vocab_rej_data_5") << std::string("вопрос") << false;
+  QTest::newRow("vocab_rej_data_6") << std::string("кот") << false;
+                       
+  QTest::newRow("vocab_rej_data_7") << std::string("блокнот") << false;
+  QTest::newRow("vocab_rej_data_8") << std::string("предлог") << false;
+}
+
+void QAUnitTests::VocabularyRejectionTest()
+{
+  QAVocabulary v;
+  QApairsQAset pSet;
+  v.GenerateVocabularyFromQAset("testFiles/vocabTest.txt", "testFiles/vocabRejectionTest.txt", pSet);
   QFETCH(std::string, word);
   QFETCH(bool, result);
   QCOMPARE((v.GetWordInd(word) != -1), result);
