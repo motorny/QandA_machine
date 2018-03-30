@@ -16,6 +16,8 @@ public:
 	
 	virtual std::string getAnswer(void) = 0;
 
+  virtual void PrintAnswer(void) = 0;
+
 	virtual void LearnFromTSV(const std::string & fileName, const std::string &rejectedWordsFileName) = 0;
 
     virtual ~IQAMachineCore() {};

@@ -23,6 +23,8 @@ public:
 
   std::string getAnswer() override;
 
+  void PrintAnswer(void);
+
   void LearnFromTSV(const std::string & fileName, const std::string &rejectedWordsFileName) override;
 
   ~QAMachineCore();
