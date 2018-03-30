@@ -156,7 +156,9 @@
     <ClCompile Include="QACsvHandle.cpp" />
     <ClCompile Include="QADataBase.cpp" />
     <ClCompile Include="QAMachineCore.cpp" />
+    <ClCompile Include="QApairsQAset.cpp" />
     <ClCompile Include="QAPlainTextHandle.cpp" />
+    <ClCompile Include="QAVocabulary.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IAdapter.h" />
@@ -167,9 +169,12 @@
     <ClInclude Include="IDatabase.h" />
     <ClInclude Include="QAMachineCore.h" />
     <ClInclude Include="IQAMachineCore.h" />
+    <ClInclude Include="QApairsQAset.h" />
     <ClInclude Include="QAPlainTextHandle.h" />
+    <ClInclude Include="QAVocabulary.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="quiz.txt" />
     <Text Include="Q_A_set.txt" />
     <Text Include="rejected.txt" />
   </ItemGroup>

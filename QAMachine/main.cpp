@@ -10,21 +10,19 @@ int main(int argc, char* argv[])
   SetConsoleCP(1251);
   SetConsoleOutputCP(1251);
   /*
-  
-  
-  сярюмнбхрэ ьпхтр кчяхдю йнмянке
-  
-  
+  !!!SET CONSOLE FONT TO LUCIDA COLONAS!!!
   */
-    QAMachineCore core;
 
-    core.LearnFromTSV("Q_A_set.txt", "rejected.txt");
-	
-	//std::cout << "QAMachine" << std::endl;
 
-    std::cout << "LETS GO\n\n" << std::endl;
+  QAMachineCore core;
+
+  core.LearnFromTSV("quiz.txt", "rejected.txt");
+
+  //std::cout << "QAMachine" << std::endl;
+
+  std::cout << "LETS GO\n\n" << std::endl;
   std::string str;
-  while (std::getline(std::cin, str)) 
+  while (std::getline(std::cin, str))
   {
     //std::cout << "Question: " <<  str;
     core.askQuestion(str);
@@ -35,5 +33,5 @@ int main(int argc, char* argv[])
 
 
 
-	return EXIT_SUCCESS;
-}   
+  return EXIT_SUCCESS;
+}

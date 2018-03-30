@@ -45,6 +45,12 @@
     <ClCompile Include="QAPlainTextHandle.cpp">
       <Filter>Source Files\fileHandle</Filter>
     </ClCompile>
+    <ClCompile Include="QAVocabulary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QApairsQAset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QADataBase.h">
@@ -74,9 +80,16 @@
     <ClInclude Include="IFileHandleFactory.h">
       <Filter>Header Files\fileHandle</Filter>
     </ClInclude>
+    <ClInclude Include="QAVocabulary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QApairsQAset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Q_A_set.txt" />
     <Text Include="rejected.txt" />
+    <Text Include="quiz.txt" />
   </ItemGroup>
 </Project>

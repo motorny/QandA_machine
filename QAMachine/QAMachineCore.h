@@ -5,31 +5,12 @@
 #include <vector>
 
 #include "IQAMachineCore.h"
-#include "QADataBase.h"
 
-class WordPair {
-public:
-  WordPair(const std::string &s, double d)
-  {
-    str = s;
-    idf = d;
-  }
-  std::string str;
-  double idf;
-};
+#include "QAVocabulary.h"
+#include "QApairsQAset.h"
 
-class QAPair {
-public:
-  QAPair(const std::string &q, const std::string &a)
-  {
-    question = q;
-    answer = a;
-  };
-  std::string question;
-  std::string answer;
-  std::vector<int> wordIndeces;
-  double invEuqlidSize;
-};
+
+
 
 
 class QAMachineCore : public IQAMachineCore
@@ -47,13 +28,12 @@ public:
   ~QAMachineCore();
 
 private:
-  std::vector<WordPair> vocabulary;
-  std::vector<std::string> rejectedWords;
-
-  std::vector<QAPair> questAnswArr;
+  QAVocabulary vocabulary;
+  QApairsQAset pairsQAset;
+  
 
   static const std::string delimetrs;
-  int questionsCnt = 0;
+
   int answerInd = 0;
 };
 
