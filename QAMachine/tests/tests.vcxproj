@@ -68,6 +68,9 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">tst_qaunittests</TargetName>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtTest;$(QTDIR)\include\QtCore;release;$(QTDIR)\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -127,7 +130,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -173,6 +176,16 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\mkspecs/win32-msvc2015;.;$(QTDIR)\include;$(QTDIR)\include/QtTest;$(QTDIR)\include/QtCore</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR=\./\;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=.;_MSC_VER=1900;_WIN32</Define>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\QAMachineCore.h" />
+    <ClInclude Include="..\QApairsQAset.h" />
+    <ClInclude Include="..\QAVocabulary.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\QAMachineCore.cpp" />
+    <ClCompile Include="..\QApairsQAset.cpp" />
+    <ClCompile Include="..\QAVocabulary.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
