@@ -32,6 +32,8 @@ public:
   };
 
   QApairsQAset::QAPair& operator[](size_t ind);
+  std::vector<QAPair>::iterator begin(void);
+  std::vector<QAPair>::iterator end(void);
 
 private:
 

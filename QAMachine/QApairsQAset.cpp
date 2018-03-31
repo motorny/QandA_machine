@@ -56,6 +56,16 @@ QApairsQAset::QAPair & QApairsQAset::operator[](size_t ind)
   return pairsArr[ind];
 }
 
+std::vector<QApairsQAset::QAPair>::iterator QApairsQAset::begin(void)
+{
+  return pairsArr.begin();
+}
+
+std::vector<QApairsQAset::QAPair>::iterator QApairsQAset::end(void)
+{
+  return pairsArr.end();
+}
+
 double QApairsQAset::QAPair::GetDistFromQuery(QAVocabulary &vocabulary, std::vector<int>& queryWordIndeces)
 {
   double val = 0.0;
