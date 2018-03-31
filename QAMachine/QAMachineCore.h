@@ -32,6 +32,11 @@ private:
   static const std::string delimetrs;
 
   int answerInd = 0;
+
+  std::vector<int> bestMatchInd;
+
+  static const size_t maxOptions = 5;
+  // std::vector<QApairsQAset::QAPair&> bestMatch;
 };
 
 #endif // !__QUESTION_ANSWER_MACHINE_CORE__
