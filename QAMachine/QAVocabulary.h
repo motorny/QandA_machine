@@ -29,7 +29,11 @@ public:
     double idf;
   };
 
-  QAVocabulary::WordPair& operator[](size_t ind);
+  WordPair& operator[](size_t ind);
+  
+
+  std::vector<WordPair>::iterator begin(void);
+  std::vector<WordPair>::iterator end(void);
 
 private:
 

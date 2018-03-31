@@ -103,4 +103,14 @@ QAVocabulary::WordPair & QAVocabulary::operator[](size_t ind)
   return vocabulary[ind];
 }
 
+vector<QAVocabulary::WordPair>::iterator QAVocabulary::begin(void)
+{
+  return vocabulary.begin();
+}
+
+vector<QAVocabulary::WordPair>::iterator QAVocabulary::end(void)
+{
+  return vocabulary.end();
+}
+
 
