@@ -5,8 +5,6 @@
 #include <string>
 #include <fstream>
 
-#include "QADataBase.h"
-
 
 class IQAMachineCore
 {

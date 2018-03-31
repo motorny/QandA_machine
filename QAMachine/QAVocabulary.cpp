@@ -82,7 +82,7 @@ int QAVocabulary::GetWordInd(const string & word)
     middle = left + (right - left) / 2;
 
     if (vocabulary[middle].str == word)
-      return static_cast<int>(middle);
+      return middle;
 
     if (vocabulary[middle].str > word)
       right = middle - 1;

@@ -28,7 +28,6 @@ public:
 private:
   QAVocabulary vocabulary;
   QApairsQAset pairsQAset;
-  
 
   static const std::string delimetrs;
 

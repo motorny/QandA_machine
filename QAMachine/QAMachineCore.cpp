@@ -2,17 +2,16 @@
 #include <iostream>
 #include <map>
 #include <sstream>
-#include "QAMachineCore.h"
 #include <algorithm>
+
+#include "QAMachineCore.h"
 
 using namespace std;
 
 const std::string QAMachineCore::delimetrs = " ,.!?";
 
 QAMachineCore::QAMachineCore()
-{
-  // TODO
-}
+{ }
 
 void QAMachineCore::askQuestion(std::string question)
 {
@@ -31,6 +30,7 @@ void QAMachineCore::askQuestion(std::string question)
 
     start = question.find_first_not_of(delimetrs, end);
   }
+
   if (start != std::string::npos)
   {
     word = question.substr(start);
@@ -38,7 +38,6 @@ void QAMachineCore::askQuestion(std::string question)
     if ((wordInd = vocabulary.GetWordInd(word)) != -1)
       queryInds.push_back(wordInd);
   }
-
 
   double maxValue = 0.0, val;
 

@@ -1,21 +1,19 @@
+#ifndef __QA_VOCABULARY_H__
+#define __QA_VOCABULARY_H__
 #pragma once
-
-#include "QApairsQAset.h"
-
 
 #include <string>
 #include <vector>
 
-
-using namespace std;
+#include "QApairsQAset.h"
 
 class QAVocabulary
 {
 public:
 
-  void GenerateVocabularyFromQAset(const string &dataFileName, const string &rejectedWordsFileName, QApairsQAset & pairsQAset);
+  void GenerateVocabularyFromQAset(const std::string &dataFileName, const std::string &rejectedWordsFileName, QApairsQAset & pairsQAset);
   
-  int GetWordInd(const string &word);
+  int GetWordInd(const std::string &word);
   
   size_t size();
 
@@ -37,6 +35,7 @@ private:
 
   std::vector<WordPair> vocabulary;
  
-  static const string delimetrs;
+  static const std::string delimetrs;
 };
 
+#endif // !__QA_VOCABULARY_H__
