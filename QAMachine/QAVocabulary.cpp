@@ -74,30 +74,22 @@ void QAVocabulary::GenerateVocabularyFromQAset(const string & dataFileName, cons
 
 int QAVocabulary::GetWordInd(const string & word)
 {
-  //int left = 0, right = vocabulary.size() - 1;
-  //int middle;
+  int left = 0, right = vocabulary.size() - 1;
+  int middle;
 
-  //while (right >= left)
-  //{
-  //  middle = left + (right - left) / 2;
-
-  //  if (vocabulary[middle].str == word)
-  //    return static_cast<int>(middle);
-
-  //  if (vocabulary[middle].str < word)
-  //    right = middle - 1;
-  //  else
-  //    left = middle + 1;
-  //}
-  for (size_t ind = 0; ind < vocabulary.size(); ++ind)
+  while (right >= left)
   {
-    if (word == vocabulary[ind].str)
-    {
-      return (int)ind;
-    }
+    middle = left + (right - left) / 2;
+
+    if (vocabulary[middle].str == word)
+      return static_cast<int>(middle);
+
+    if (vocabulary[middle].str > word)
+      right = middle - 1;
+    else
+      left = middle + 1;
   }
-  
-  //std::cout << "NOT FOUND IN DICT" << endl;
+
   return -1;
 }
 
