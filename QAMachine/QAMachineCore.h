@@ -33,7 +33,7 @@ private:
 
   int answerInd = 0;
 
-  std::vector<int> bestMatchInd;
+  std::vector<std::pair<int, double>> bestMatchInd;
 
   static const size_t maxOptions = 5;
   // std::vector<QApairsQAset::QAPair&> bestMatch;
