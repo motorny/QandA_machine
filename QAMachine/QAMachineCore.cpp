@@ -8,42 +8,60 @@
 
 using namespace std;
 
-const std::string QAMachineCore::delimetrs = " ,.!?";
+const std::string QAMachineCore::delimetrs = " ,.!?"; //!< delimiters
+const double threshold = 1e-5;
 
 QAMachineCore::QAMachineCore()
 {
 }
 
 //! A function to find best options for answers
-vector<int> findBest(int count, QApairsQAset &set,
+/*! \brief findBest function chooses 5 best options depending on score
+ *
+ *  \param count - number of options needed
+ *  \param set - set pairs question-answer
+ *  \param vocabulary - vocabulary with words and idf metric
+ *  \param queryInd - indexes of words in asked question
+ *  \return vector of pairs of indexes of questions in set with related score
+ */
+vector<pair<int, double>> findBest(int count, QApairsQAset &set,
   QAVocabulary &vocabulary, vector<int> &queryInd)
 {
-  vector<int> bestInd;
-  double value;
+  vector<pair<int, double>> bestInd; //!< bestInd accumulates best option
 
+  bestInd.resize(1);
+  // insert first element to be able to compare
+  bestInd[0] = pair<int, double>(0, set[0].GetDistFromQuery(vocabulary, queryInd));
+
+  double value = 0.0;
   // Iterate through the whole set to find best options
-  for (size_t pairInd = 0; pairInd < set.size(); ++pairInd)
+  for (size_t pairInd = 1; pairInd < set.size(); ++pairInd)
   {
     // cache value of current option
     value = set[pairInd].GetDistFromQuery(vocabulary, queryInd);
 
     // Find place for insertion
-    int insertIndex = bestInd.size() - 1;
-    while (value > set[insertIndex].GetDistFromQuery(vocabulary, queryInd))
-      ++insertIndex;
+    size_t insertIndex = bestInd.size() - 1;
+    while (insertIndex > 0 && value > set[insertIndex].GetDistFromQuery(vocabulary, queryInd))
+      --insertIndex;
+
     // Insert new value in appropriate index
-    bestInd.insert(bestInd.begin() + insertIndex, pairInd);
+    bestInd.insert(bestInd.begin() + insertIndex, pair<int, double>(pairInd, value));
 
     // keep only fixed amount of best options
-    bestInd.resize(count);
+    bestInd.resize(std::min(static_cast<size_t>(count), bestInd.size()));
   }
 
-  double threshold = 1e-8;
+  // Make extra effort to sort using lambda
+  sort(bestInd.begin(), bestInd.end(), [](const pair<int, double> &left, const pair<int, double> &right)
+  {
+    return left.second > right.second;
+  });
 
   // If very best one is so low, than any option is not good enough
-  if (set[bestInd[0]].GetDistFromQuery(vocabulary, queryInd) < threshold)
+  if (set[bestInd[0].first].GetDistFromQuery(vocabulary, queryInd) < threshold)
   {
-    vector<int> badOptions(count, -1);
+    vector<pair<int, double>> badOptions(count, pair<int, double>(0, -1));
     return badOptions;
   }
 
@@ -55,6 +73,9 @@ void QAMachineCore::askQuestion(std::string question)
   vector<int> queryInds;
   string word;
   int wordInd;
+
+  // Remember current question for furtherer use
+  currentQuestion = question;
 
   size_t start = question.find_first_not_of(delimetrs), end = 0;
   while ((end = question.find_first_of(delimetrs, start)) != string::npos)
@@ -76,54 +97,59 @@ void QAMachineCore::askQuestion(std::string question)
       queryInds.push_back(wordInd);
   }
 
-  double maxValue = 0.0, val;
-
-  for (size_t pairInd = 0; pairInd < pairsQAset.size(); ++pairInd)
-  {
-    val = pairsQAset[pairInd].GetDistFromQuery(vocabulary,queryInds);
-    
-    if (val > maxValue)
-    {
-      answerInd = pairInd;
-      maxValue = val;
-    }
-  }
-
-  if (maxValue == 0)
-    answerInd = -1;
-
-  bestMatchInd = vector<int>(maxOptions, answerInd);
-
-  //bestMatchInd = findBest(maxOptions, pairsQAset, vocabulary, queryInds);
-  //answerInd = bestMatchInd[0];
+  bestMatchInd = findBest(maxOptions, pairsQAset, vocabulary, queryInds);
 }
 
 std::string QAMachineCore::getAnswer()
 {
-  if (bestMatchInd[0] == -1)
+  if (bestMatchInd[0].second == -1)
     return "Can't find answer";
 
-  return pairsQAset[bestMatchInd[0]].answer;
+  return pairsQAset[bestMatchInd[0].first].answer;
 }
 
 void QAMachineCore::PrintAnswer(void)
 {
-  if (bestMatchInd[0] == -1)
+  // Check if answer is valid
+  if (bestMatchInd[0].second == -1)
   {
     cout << "There is no simular question, so we can't get answer!" << endl;
+    
+    return;
   }
+
+  // Present best option as answer
   cout << "----------------------------------------------" << endl;
-  cout << "Closest question: " << pairsQAset[bestMatchInd[0]].question <<
-    " -> " << pairsQAset[bestMatchInd[0]].answer << endl;
+  cout << "Closest question: " << pairsQAset[bestMatchInd[0].first].question <<
+     " -> " << pairsQAset[bestMatchInd[0].first].answer << "(" << bestMatchInd[0].second << ")" << endl;
   cout << ">> Other options: " << endl;
 
-  for (size_t it = 0; it < bestMatchInd.size() - 1; ++it)
+  // list other options from bestMatch as well
+  // format: >>>> Question: <question> -> <answer> <score>
+  for (size_t it = 1; it < bestMatchInd.size() - 1; ++it)
   {
-    cout << ">>>> Question: " << pairsQAset[it].question << " -> " <<
-      pairsQAset[it].answer << " " << it << endl;
+    // Do not show results if they are not much relevant
+    if (bestMatchInd[it].second < threshold)
+      continue;
+
+    cout << ">>>> Question: " << pairsQAset[bestMatchInd[it].first].question << " -> " <<
+      pairsQAset[bestMatchInd[it].first].answer << " (" << bestMatchInd[it].second << ")" << endl;
+
+#ifndef NDEBUG
+
+    istringstream stringStream(currentQuestion);
+/*
+    vector<QAVocabulary::WordPair> words{ istream_iterator<string>(stringStream),
+                                          istream_iterator<string>() };
+*/
+    // Print additional debug information
+    cout << "debug-info: "  << endl;
+    
+
+#endif // NDEBUG
   }
 
-  cout << "----------------------------------------------" << endl;
+  cout << "----------------------------------------------" << endl << endl;
 }
 
 void QAMachineCore::LearnFromTSV(const string & fileName, const std::string &rejectedWordsFileName)
