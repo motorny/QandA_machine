@@ -14,8 +14,8 @@ public:
   void GenerateVocabularyFromQAset(const std::string &dataFileName, 
     const std::string &rejectedWordsFileName, QApairsQAset & pairsQAset);
   
-  int GetWordInd(const std::string &word);
   
+  int GetWordInd(const std::string &word) const;
   size_t size();
 
   /*! \class WordPair
@@ -50,6 +50,20 @@ public:
 
   WordPair& operator[](size_t ind);
   
+
+  /*! \brief Parser for strings to get its' words indeces
+   *
+   * Function used to get a set of indeces of words, which 
+   * are contained in string. Indeces are taken from current instance.
+   * If there is no some specific word
+   * in vocabulary, no index is appended. If some word appears more than 1 time,
+   * it's index is appended only one time. So all indeces are unique.
+   * All words are transformed to lowercase before finding.
+   * \param str String to parse
+   * \return Vector of contained words' indeces
+   */
+  std::vector<int> ParseStrByVocabInds(std::string & str) const;
+
   std::vector<WordPair>::iterator begin(void);
 
   std::vector<WordPair>::iterator end(void);
@@ -58,6 +72,7 @@ private:
 
   std::vector<WordPair> vocabulary;
  
+
   static const std::string delimetrs;
 };
 
