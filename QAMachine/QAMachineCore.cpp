@@ -8,7 +8,8 @@
 
 using namespace std;
 
-const std::string QAMachineCore::delimetrs = " ,.!?";
+const std::string QAMachineCore::delimetrs = " ,.!?"; //!< delimiters
+const double threshold = 1e-5;
 
 QAMachineCore::QAMachineCore()
 {
@@ -57,8 +58,6 @@ vector<pair<int, double>> findBest(int count, QApairsQAset &set,
     return left.second > right.second;
   });
 
-  double threshold = 1e-8;
-
   // If very best one is so low, than any option is not good enough
   if (set[bestInd[0].first].GetDistFromQuery(vocabulary, queryInd) < threshold)
   {
@@ -74,6 +73,9 @@ void QAMachineCore::askQuestion(std::string question)
   vector<int> queryInds;
   string word;
   int wordInd;
+
+  // Remember current question for furtherer use
+  currentQuestion = question;
 
   size_t start = question.find_first_not_of(delimetrs), end = 0;
   while ((end = question.find_first_of(delimetrs, start)) != string::npos)
@@ -96,7 +98,6 @@ void QAMachineCore::askQuestion(std::string question)
   }
 
   bestMatchInd = findBest(maxOptions, pairsQAset, vocabulary, queryInds);
-  answerInd = bestMatchInd[0].first;
 }
 
 std::string QAMachineCore::getAnswer()
@@ -125,10 +126,27 @@ void QAMachineCore::PrintAnswer(void)
 
   // list other options from bestMatch as well
   // format: >>>> Question: <question> -> <answer> <score>
-  for (size_t it = 0; it < bestMatchInd.size() - 1; ++it)
+  for (size_t it = 1; it < bestMatchInd.size() - 1; ++it)
   {
+    // Do not show results if they are not much relevant
+    if (bestMatchInd[it].second < threshold)
+      continue;
+
     cout << ">>>> Question: " << pairsQAset[bestMatchInd[it].first].question << " -> " <<
       pairsQAset[bestMatchInd[it].first].answer << " (" << bestMatchInd[it].second << ")" << endl;
+
+#ifndef NDEBUG
+
+    istringstream stringStream(currentQuestion);
+/*
+    vector<QAVocabulary::WordPair> words{ istream_iterator<string>(stringStream),
+                                          istream_iterator<string>() };
+*/
+    // Print additional debug information
+    cout << "debug-info: "  << endl;
+    
+
+#endif // NDEBUG
   }
 
   cout << "----------------------------------------------" << endl << endl;

@@ -29,14 +29,19 @@ private:
   QAVocabulary vocabulary;
   QApairsQAset pairsQAset;
 
+  std::string currentQuestion; //!< Current question asked
+                               /*!< Is used in analysis that might be needed after
+                                *   processing in askQuestion is complete */
+
   static const std::string delimetrs;
 
-  int answerInd = 0;
+  std::vector<std::pair<int, double>> bestMatchInd; //!< Array of best options
+                                                    /*!< Holds indexes to words in set
+                                                     *   pairsQAset, as well as the score  
+                                                     *   corresponding to the closeness to 
+                                                     *   currently asked question */
 
-  std::vector<std::pair<int, double>> bestMatchInd;
-
-  static const size_t maxOptions = 5;
-  // std::vector<QApairsQAset::QAPair&> bestMatch;
+  static const size_t maxOptions = 5; //!< Number of top options considered for answer
 };
 
 #endif // !__QUESTION_ANSWER_MACHINE_CORE__
