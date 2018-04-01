@@ -16,11 +16,28 @@ void QApairsQAset::IndexByVocab(QAVocabulary & vocabulary)
 {
   vector<int> questionInds;
 
+  // clear all idf fields for correct df (document frequency) calculating
+  for (auto &wP : vocabulary) {
+    wP.idf = 0.0;
+  }
+
+
   for (auto &qaP : pairsArr)
   {
     qaP.wordIndeces = vocabulary.ParseStrByVocabInds(qaP.question);
 
+    // increase df for all words, which was met
+    for (int wI : qaP.wordIndeces)
+    {
+      vocabulary[wI].idf += 1.0;
+    }
+
     qaP.invEuqlidSize = 1 / sqrt((double)qaP.wordIndeces.size());
+  }
+
+  // calculate idf as log(N/df) where N = document (question) count
+  for (auto &wP : vocabulary) {
+    wP.idf = log((double)pairsArr.size() / wP.idf);
   }
 
 }

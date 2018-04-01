@@ -126,7 +126,7 @@ void QAMachineCore::PrintAnswer(void)
 
 void QAMachineCore::LearnFromTSV(const string & fileName, const std::string &rejectedWordsFileName)
 {
-  vocabulary.GenerateVocabularyFromQAset(fileName, rejectedWordsFileName, pairsQAset);
+  vocabulary.GenerateVocabularyFromQAFile(fileName, rejectedWordsFileName, pairsQAset);
   pairsQAset.IndexByVocab(vocabulary);
   std::cout << "Vocabulary size: " << vocabulary.size() << endl;
 }

@@ -11,6 +11,14 @@ public:
   
   void AddPair(const std::string &question, const std::string &answer);
   
+
+  /*! \brief Assign vector of word's indexes to all questions and calculate idf
+   * 
+   * Fill wordIndeces wordIndeces vector in each QAPair using ParseStrByVocabInds 
+   * function. 
+   * Calculate idf (inverse document frequency) for each word in vocabulary
+   * \param vocabulary Vocabulary to get words' indeces from
+   */
   void IndexByVocab(QAVocabulary &vocabulary);
   
   size_t size();

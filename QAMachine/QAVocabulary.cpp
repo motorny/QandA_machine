@@ -9,7 +9,7 @@ using namespace std;
 
 const string QAVocabulary::delimetrs = " ,.!?";
 
-void QAVocabulary::GenerateVocabularyFromQAset(const string & dataFileName, const string & rejectedWordsFileName, QApairsQAset & pairsQAset)
+void QAVocabulary::GenerateVocabularyFromQAFile(const string & dataFileName, const string & rejectedWordsFileName, QApairsQAset & pairsQAset)
 {
   ifstream qAPairsIFS(dataFileName);
 
@@ -18,33 +18,42 @@ void QAVocabulary::GenerateVocabularyFromQAset(const string & dataFileName, cons
     return;
   }
 
-  map<string, int> tempMap;
+  map<string, int> tempMap; // map used to push words in O(log(n))
   string question;
   string answer;
   string pairStr;
   string word;
-  int questionsCnt = 0;
+
+  // iterate through lines of dataFile
   while (std::getline(qAPairsIFS, pairStr))
   {
-    questionsCnt++;
+    //get question and answer strings
     question = pairStr.substr(0, pairStr.find(';'));
     answer = pairStr.substr(pairStr.find(';') + 1);
+
+    // lefttrim answer string
     size_t fNotSp = answer.find_first_not_of(" \t");
     if (fNotSp != -1)
       answer = answer.substr(fNotSp);
+
     pairsQAset.AddPair(question, answer);
 
+    // iterate through words of question
     size_t start = question.find_first_not_of(delimetrs), end = 0;
     while ((end = question.find_first_of(delimetrs, start)) != string::npos)
     {
       word = question.substr(start, end - start);
+      // transform to lowercase
       transform(word.begin(), word.end(), word.begin(), ::tolower);
       tempMap[word]++;
+      //find next word's start
       start = question.find_first_not_of(delimetrs, end);
     }
+    //proceed last word
     if (start != string::npos)
     {
       word = question.substr(start);
+      // transform to lowercase
       transform(word.begin(), word.end(), word.begin(), ::tolower);
       tempMap[word]++;
     }
@@ -52,6 +61,7 @@ void QAVocabulary::GenerateVocabularyFromQAset(const string & dataFileName, cons
   qAPairsIFS.close();
   // File parsing ended
 
+  // delete rejected words from map
   string rWord;
   ifstream rejectedWordsIFS(rejectedWordsFileName);
   if (!rejectedWordsIFS.is_open()) {
@@ -68,7 +78,7 @@ void QAVocabulary::GenerateVocabularyFromQAset(const string & dataFileName, cons
   // resave as vector and calcualate idf
   for (auto &w : tempMap)
   {
-    vocabulary.emplace_back(WordPair(w.first, log((double)questionsCnt / (double)w.second)));
+    vocabulary.emplace_back(WordPair(w.first, (double)w.second));
   }
 }
 
