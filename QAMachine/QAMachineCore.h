@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 
 #include "IQAMachineCore.h"
 #include "QAVocabulary.h"
@@ -35,11 +36,11 @@ private:
 
   static const std::string delimetrs;
 
-  std::vector<std::pair<int, double>> bestMatchInd; //!< Array of best options
-                                                    /*!< Holds indexes to words in set
-                                                     *   pairsQAset, as well as the score  
-                                                     *   corresponding to the closeness to 
-                                                     *   currently asked question */
+  std::list<std::pair<int, double>> bestMatchInd; //!< Array of best options
+                                                  /*!< Holds indexes to words in set
+                                                   *   pairsQAset, as well as the score  
+                                                   *   corresponding to the closeness to 
+                                                   *   currently asked question */
 
   static const size_t maxOptions = 5; //!< Number of top options considered for answer
 };
