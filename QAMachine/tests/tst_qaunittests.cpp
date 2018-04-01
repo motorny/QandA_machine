@@ -23,6 +23,8 @@ public:
   void VocabularyRejectionTest();
   void SimilarQuestionTest_data();
   void SimilarQuestionTest();
+  void IdfTest_data();
+  void IdfTest();
 };
 
 
@@ -107,6 +109,28 @@ void QAUnitTests::SimilarQuestionTest()
   QVERIFY(core.getAnswer() == result);
 }
 
+void QAUnitTests::IdfTest_data()
+{
+  QTest::addColumn<std::string>("word");
+  QTest::addColumn<double>("expIdf");
+
+  QTest::newRow("idf_data_1") << std::string("Кто") << (log(4.0 / 2.0));
+  QTest::newRow("idf_data_2") << std::string("выиграл") << (log(4.0 / 1.0));
+  QTest::newRow("idf_data_3") << std::string("2018") << (log(4.0 / 1.0));
+  QTest::newRow("idf_data_4") << std::string("в") << (log(4.0 / 1.0));
+}
+
+void QAUnitTests::IdfTest()
+{
+  QAVocabulary v;
+  QApairsQAset pSet;
+  v.GenerateVocabularyFromQAset("testFiles/QA_Set.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
+  QFETCH(std::string, word);
+  QFETCH(double, expIdf);
+  transform(word.begin(), word.end(), word.begin(), ::tolower);
+  int cInd = v.GetWordInd(word);
+  QCOMPARE((v[cInd].idf), expIdf);
+}
 int main(int argc, char *argv[]) \
 {
   setlocale(LC_ALL, "Russian");

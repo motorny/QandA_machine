@@ -72,7 +72,7 @@ void QAVocabulary::GenerateVocabularyFromQAset(const string & dataFileName, cons
   }
 }
 
-int QAVocabulary::GetWordInd(const string & word)
+int QAVocabulary::GetWordInd(const string & word) const
 {
   int left = 0, right = vocabulary.size() - 1;
   int middle;
@@ -101,6 +101,58 @@ size_t QAVocabulary::size()
 QAVocabulary::WordPair & QAVocabulary::operator[](size_t ind)
 {
   return vocabulary[ind];
+}
+
+std::vector<int> QAVocabulary::ParseStrByVocabInds(std::string & str) const
+{
+  string word;
+  vector<int> res;
+  int wordInd;
+  bool indRepeat;
+  size_t start = str.find_first_not_of(delimetrs), end = 0;
+
+  // iterate by words untill end of string
+  while ((end = str.find_first_of(delimetrs, start)) != string::npos)
+  {
+    word = str.substr(start, end - start);
+    // make word lowercase
+    transform(word.begin(), word.end(), word.begin(), ::tolower);
+    if ((wordInd = this->GetWordInd(word)) != -1)
+    {
+      // check for wordInd uniquenss
+      indRepeat = false;
+      for (int wInd : res)
+        if (wInd == wordInd)
+          indRepeat = true;
+
+      if (!indRepeat)
+        res.push_back(wordInd);
+    }
+
+    // recalculate new word start
+    start = str.find_first_not_of(delimetrs, end);
+  }
+
+  //proceed last word
+  if (start != std::string::npos)
+  {
+    word = str.substr(start);
+    // make word lowercase
+    transform(word.begin(), word.end(), word.begin(), ::tolower);
+    if ((wordInd = this->GetWordInd(word)) != -1)
+    {
+      // check for wordInd uniquenss
+      indRepeat = false;
+      for (int wInd : res)
+        if (wInd == wordInd)
+          indRepeat = true;
+
+      if (!indRepeat)
+        res.push_back(wordInd);
+    }
+  }
+
+  return res;
 }
 
 vector<QAVocabulary::WordPair>::iterator QAVocabulary::begin(void)
