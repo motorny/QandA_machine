@@ -69,31 +69,12 @@ list<pair<int, double>> findBest(int count, QApairsQAset &set,
 void QAMachineCore::askQuestion(std::string question)
 {
   vector<int> queryInds;
-  string word;
-  int wordInd;
 
   // Remember current question for furtherer use
   currentQuestion = question;
 
-  size_t start = question.find_first_not_of(delimetrs), end = 0;
-  while ((end = question.find_first_of(delimetrs, start)) != string::npos)
-  {
-    word = question.substr(start, end - start);
-    transform(word.begin(), word.end(), word.begin(), ::tolower);
 
-    if ((wordInd = vocabulary.GetWordInd(word)) != -1)
-      queryInds.push_back(wordInd);
-
-    start = question.find_first_not_of(delimetrs, end);
-  }
-
-  if (start != std::string::npos)
-  {
-    word = question.substr(start);
-    transform(word.begin(), word.end(), word.begin(), ::tolower);
-    if ((wordInd = vocabulary.GetWordInd(word)) != -1)
-      queryInds.push_back(wordInd);
-  }
+  queryInds = vocabulary.ParseStrByVocabInds(question);
 
   bestMatchInd = findBest(maxOptions, pairsQAset, vocabulary, queryInds);
 }
@@ -154,7 +135,7 @@ void QAMachineCore::PrintAnswer(void)
 
 void QAMachineCore::LearnFromTSV(const string & fileName, const std::string &rejectedWordsFileName)
 {
-  vocabulary.GenerateVocabularyFromQAset(fileName, rejectedWordsFileName, pairsQAset);
+  vocabulary.GenerateVocabularyFromQAFile(fileName, rejectedWordsFileName, pairsQAset);
   pairsQAset.IndexByVocab(vocabulary);
   std::cout << "Vocabulary size: " << vocabulary.size() << endl;
 }

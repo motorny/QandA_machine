@@ -54,7 +54,7 @@ void QAUnitTests::VocabularyTest()
 {
   QAVocabulary v;
   QApairsQAset pSet;
-  v.GenerateVocabularyFromQAset("testFiles/vocabTest.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
+  v.GenerateVocabularyFromQAFile("testFiles/vocabTest.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
   QFETCH(std::string, word);
   QFETCH(bool, result);
   QCOMPARE((v.GetWordInd(word) != -1), result);
@@ -81,7 +81,7 @@ void QAUnitTests::VocabularyRejectionTest()
 {
   QAVocabulary v;
   QApairsQAset pSet;
-  v.GenerateVocabularyFromQAset("testFiles/vocabTest.txt", "testFiles/vocabRejectionTest.txt", pSet);
+  v.GenerateVocabularyFromQAFile("testFiles/vocabTest.txt", "testFiles/vocabRejectionTest.txt", pSet);
   QFETCH(std::string, word);
   QFETCH(bool, result);
   QCOMPARE((v.GetWordInd(word) != -1), result);
@@ -124,7 +124,8 @@ void QAUnitTests::IdfTest()
 {
   QAVocabulary v;
   QApairsQAset pSet;
-  v.GenerateVocabularyFromQAset("testFiles/QA_Set.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
+  v.GenerateVocabularyFromQAFile("testFiles/QA_Set.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
+  pSet.IndexByVocab(v);
   QFETCH(std::string, word);
   QFETCH(double, expIdf);
   transform(word.begin(), word.end(), word.begin(), ::tolower);

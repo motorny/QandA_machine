@@ -11,7 +11,17 @@ class QAVocabulary
 {
 public:
 
-  void GenerateVocabularyFromQAset(const std::string &dataFileName, 
+  /*! \brief Fill vocabulary and QApairs from file
+   *
+   * Parse file dataFileName, take question and answer from each line and
+   * save it to pairsQAset. Question is divided by words and they are saved
+   * to vocabulary. Words from rejectedWordsFileName are not saved to vocabulary.
+   * Side-effect: field idf will conatin count of times this word met in full dataset. 
+   * \param dataFileName File with questions and answers
+   * \param rejectedWordsFileName File with words to avoid in vocabulary
+   * \pairsQAset Object to put in strings of questions and answers
+   */
+  void GenerateVocabularyFromQAFile(const std::string &dataFileName, 
     const std::string &rejectedWordsFileName, QApairsQAset & pairsQAset);
   
   
