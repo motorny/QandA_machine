@@ -14,34 +14,13 @@ void QApairsQAset::AddPair(const std::string & question, const std::string & ans
 
 void QApairsQAset::IndexByVocab(QAVocabulary & vocabulary)
 {
-  string word;
+  vector<int> questionInds;
 
   for (auto &qaP : pairsArr)
   {
-    int wordsCnt = 0;
-    int wordInd;
-    size_t start = qaP.question.find_first_not_of(delimetrs), end = 0;
-    while ((end = qaP.question.find_first_of(delimetrs, start)) != string::npos)
-    {
-      word = qaP.question.substr(start, end - start);
-      transform(word.begin(), word.end(), word.begin(), ::tolower);
-      if ((wordInd = vocabulary.GetWordInd(word)) != -1)
-          qaP.wordIndeces.push_back(wordInd);
+    qaP.wordIndeces = vocabulary.ParseStrByVocabInds(qaP.question);
 
-      wordsCnt++;
-      start = qaP.question.find_first_not_of(delimetrs, end);
-    }
-    if (start != std::string::npos)
-    {
-      word = qaP.question.substr(start);
-      transform(word.begin(), word.end(), word.begin(), ::tolower);
-      if ((wordInd = vocabulary.GetWordInd(word)) != -1)
-        qaP.wordIndeces.push_back(wordInd);
-
-      wordsCnt++;
-    }
-
-    qaP.invEuqlidSize = 1 / sqrt((double)wordsCnt);
+    qaP.invEuqlidSize = 1 / sqrt((double)qaP.wordIndeces.size());
   }
 
 }
