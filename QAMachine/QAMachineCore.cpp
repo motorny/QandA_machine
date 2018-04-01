@@ -18,6 +18,13 @@ QAMachineCore::QAMachineCore()
 
 /*! \brief findBest function chooses 5 best options depending on score
  *
+ *  Function creates a list of pairs with interger - index in set and
+ *  double - value, corresponding to closeness of questions. New value
+ *  is inserted while maintaining invariant (list is sorted by value).
+ *  if no close options were found (irrelevance means that closeness is
+ *  less than threshold that is a filed of core class and can be modified
+ *  to represent more or less strict cut-plane of closeness). If no 
+ *  relevant options were found than function a list of (0, -1). 
  *  \param count - number of options needed
  *  \param set - set pairs question-answer
  *  \param vocabulary - vocabulary with words and idf metric
@@ -125,17 +132,19 @@ void QAMachineCore::PrintAnswer(void)
 
     std::cout << ">>>> Question: " << pairsQAset[option.first].question << " -> " <<
       pairsQAset[option.first].answer << " (" << option.second << ")" << endl;
-
+  
 #ifndef NDEBUG
 
-/*    istringstream stringStream(currentQuestion);
+    vector<int> indWordsQuestion = vocabulary.ParseStrByVocabInds(currentQuestion);
+    vector<int> indWordsOption = vocabulary.ParseStrByVocabInds(pairsQAset[option.first].question);
 
-    vector<QAVocabulary::WordPair> words{ istream_iterator<string>(stringStream),
-                                          istream_iterator<string>() };
-*/
     // Print additional debug information
-    std::cout << "debug-info: "  << endl;
-    
+    std::cout << "debug-info: <word>-<idf>"  << endl;
+    for (int wordInd : indWordsQuestion)
+      cout << vocabulary[wordInd].word << " " << vocabulary[wordInd].idf << "| ";
+
+    for (int wordInd : indWordsOption)
+      cout << vocabulary[wordInd].word << " " << vocabulary[wordInd].idf << "| ";
 
 #endif // NDEBUG
   }
