@@ -2,6 +2,8 @@
 #include <QtTest>
 
 #include <string>
+#include <list>
+#include <vector>
 #include <Windows.h>
 #include <iostream>
 
@@ -25,6 +27,8 @@ public:
   void SimilarQuestionTest();
   void IdfTest_data();
   void IdfTest();
+  void StrToIndexTest_data();
+  void StrToIndexTest();
 };
 
 
@@ -132,6 +136,45 @@ void QAUnitTests::IdfTest()
   int cInd = v.GetWordInd(word);
   QCOMPARE((v[cInd].idf), expIdf);
 }
+
+void QAUnitTests::StrToIndexTest_data()
+{
+}
+void QAUnitTests::StrToIndexTest()
+{
+  QAVocabulary v;
+  QApairsQAset pSet;
+  v.GenerateVocabularyFromQAFile("testFiles/QA_Set.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
+  pSet.IndexByVocab(v);
+
+  std::list<int> expIndList_data1;  
+  expIndList_data1.push_back(v.GetWordInd("кто"));
+  expIndList_data1.push_back(v.GetWordInd("выиграл"));
+  expIndList_data1.push_back(v.GetWordInd("олимпиаду"));
+  expIndList_data1.push_back(v.GetWordInd("2018"));
+  expIndList_data1.sort();
+
+  std::vector<int> res = v.ParseStrByVocabInds(pSet[0].question);
+  std::list<int> indList_data1(res.begin(), res.end());
+  indList_data1.sort();
+
+  QVERIFY(indList_data1 == expIndList_data1);
+
+  std::list<int> expIndList_data2;
+  expIndList_data2.push_back(v.GetWordInd("какого"));
+  expIndList_data2.push_back(v.GetWordInd("цвета"));
+  expIndList_data2.push_back(v.GetWordInd("солнце"));
+  expIndList_data2.sort();
+
+  res = v.ParseStrByVocabInds(pSet[2].question);
+  std::list<int> indList_data2(res.begin(), res.end());
+  indList_data2.sort();
+
+  QVERIFY(indList_data2 == expIndList_data2);
+}
+
+
+
 int main(int argc, char *argv[]) \
 {
   setlocale(LC_ALL, "Russian");
