@@ -1,5 +1,5 @@
 #include <iostream>
-#include "QAMachineCore.h"
+#include "MachineCore.h"
 #include <iostream>
 #include <locale>
 #include <Windows.h>
@@ -12,9 +12,9 @@ int main(int argc, char* argv[])
   SetConsoleCP(1251);
   SetConsoleOutputCP(1251);
 
-  QAMachineCore core;
+  MachineCore core;
 
-  core.LearnFromTSV("quiz.txt", "rejected.txt");
+  core.learnFromTSV("quiz.txt", "rejected.txt");
 
   std::cout << "LETS GO\n\n" << std::endl;
   std::string str = "";
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     std::cout << core.getAnswer() << std::endl << std::endl;
  
     core.askQuestion(str);
-    core.PrintAnswer();
+    core.printAnswer();
   }
 
   return EXIT_SUCCESS;

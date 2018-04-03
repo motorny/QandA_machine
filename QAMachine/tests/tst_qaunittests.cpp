@@ -56,12 +56,12 @@ void QAUnitTests::VocabularyTest_data()
 
 void QAUnitTests::VocabularyTest()
 {
-  QAVocabulary v;
-  QApairsQAset pSet;
-  v.GenerateVocabularyFromQAFile("testFiles/vocabTest.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
+  Vocabulary v;
+  QAPairsSet pSet;
+  v.generateVocabularyFromQAFile("testFiles/vocabTest.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
   QFETCH(std::string, word);
   QFETCH(bool, result);
-  QCOMPARE((v.GetWordInd(word) != -1), result);
+  QCOMPARE((v.getWordInd(word) != -1), result);
 }
 
 void QAUnitTests::VocabularyRejectionTest_data()
@@ -83,12 +83,12 @@ void QAUnitTests::VocabularyRejectionTest_data()
 
 void QAUnitTests::VocabularyRejectionTest()
 {
-  QAVocabulary v;
-  QApairsQAset pSet;
-  v.GenerateVocabularyFromQAFile("testFiles/vocabTest.txt", "testFiles/vocabRejectionTest.txt", pSet);
+  Vocabulary v;
+  QAPairsSet pSet;
+  v.generateVocabularyFromQAFile("testFiles/vocabTest.txt", "testFiles/vocabRejectionTest.txt", pSet);
   QFETCH(std::string, word);
   QFETCH(bool, result);
-  QCOMPARE((v.GetWordInd(word) != -1), result);
+  QCOMPARE((v.getWordInd(word) != -1), result);
 }
 
 void QAUnitTests::SimilarQuestionTest_data()
@@ -104,9 +104,9 @@ void QAUnitTests::SimilarQuestionTest_data()
 
 void QAUnitTests::SimilarQuestionTest()
 {
-  QAMachineCore core;
+  MachineCore core;
 
-  core.LearnFromTSV("testFiles/QA_set.txt", "testFiles/vocabTestRejected_empty.txt");
+  core.learnFromTSV("testFiles/QA_set.txt", "testFiles/vocabTestRejected_empty.txt");
   QFETCH(std::string, question);
   QFETCH(std::string, result);
   core.askQuestion(question);
@@ -126,14 +126,14 @@ void QAUnitTests::IdfTest_data()
 
 void QAUnitTests::IdfTest()
 {
-  QAVocabulary v;
-  QApairsQAset pSet;
-  v.GenerateVocabularyFromQAFile("testFiles/QA_Set.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
-  pSet.IndexByVocab(v);
+  Vocabulary v;
+  QAPairsSet pSet;
+  v.generateVocabularyFromQAFile("testFiles/QA_Set.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
+  pSet.getIndexByVocab(v);
   QFETCH(std::string, word);
   QFETCH(double, expIdf);
   transform(word.begin(), word.end(), word.begin(), ::tolower);
-  int cInd = v.GetWordInd(word);
+  int cInd = v.getWordInd(word);
   QCOMPARE((v[cInd].idf), expIdf);
 }
 
@@ -142,31 +142,31 @@ void QAUnitTests::StrToIndexTest_data()
 }
 void QAUnitTests::StrToIndexTest()
 {
-  QAVocabulary v;
-  QApairsQAset pSet;
-  v.GenerateVocabularyFromQAFile("testFiles/QA_Set.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
-  pSet.IndexByVocab(v);
+  Vocabulary v;
+  QAPairsSet pSet;
+  v.generateVocabularyFromQAFile("testFiles/QA_Set.txt", "testFiles/vocabTestRejected_empty.txt", pSet);
+  pSet.getIndexByVocab(v);
 
   std::list<int> expIndList_data1;  
-  expIndList_data1.push_back(v.GetWordInd("кто"));
-  expIndList_data1.push_back(v.GetWordInd("выиграл"));
-  expIndList_data1.push_back(v.GetWordInd("олимпиаду"));
-  expIndList_data1.push_back(v.GetWordInd("2018"));
+  expIndList_data1.push_back(v.getWordInd("кто"));
+  expIndList_data1.push_back(v.getWordInd("выиграл"));
+  expIndList_data1.push_back(v.getWordInd("олимпиаду"));
+  expIndList_data1.push_back(v.getWordInd("2018"));
   expIndList_data1.sort();
 
-  std::vector<int> res = v.ParseStrByVocabInds(pSet[0].question);
+  std::vector<int> res = v.parseStrByVocabInds(pSet[0].question);
   std::list<int> indList_data1(res.begin(), res.end());
   indList_data1.sort();
 
   QVERIFY(indList_data1 == expIndList_data1);
 
   std::list<int> expIndList_data2;
-  expIndList_data2.push_back(v.GetWordInd("какого"));
-  expIndList_data2.push_back(v.GetWordInd("цвета"));
-  expIndList_data2.push_back(v.GetWordInd("солнце"));
+  expIndList_data2.push_back(v.getWordInd("какого"));
+  expIndList_data2.push_back(v.getWordInd("цвета"));
+  expIndList_data2.push_back(v.getWordInd("солнце"));
   expIndList_data2.sort();
 
-  res = v.ParseStrByVocabInds(pSet[2].question);
+  res = v.parseStrByVocabInds(pSet[2].question);
   std::list<int> indList_data2(res.begin(), res.end());
   indList_data2.sort();
 

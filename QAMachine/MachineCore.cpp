@@ -4,14 +4,14 @@
 #include <sstream>
 #include <algorithm>
 
-#include "QAMachineCore.h"
+#include "MachineCore.h"
 
 using namespace std;
 
-const std::string QAMachineCore::delimetrs = " ,.!?"; //!< delimiters
+const std::string MachineCore::delimetrs = " ,.!?"; //!< delimiters
 const double threshold = 1e-5;
 
-QAMachineCore::QAMachineCore()
+MachineCore::MachineCore()
 {
 }
 
@@ -31,17 +31,17 @@ QAMachineCore::QAMachineCore()
  *  \param queryInd - indexes of words in asked question
  *  \return list of pairs of indexes of questions in set with related score
  */
-list<pair<int, double>> findBest(int count, QApairsQAset &set,
-  QAVocabulary &vocabulary, vector<int> &queryInd)
+list<pair<int, double>> findBest(int count, QAPairsSet &set,
+  Vocabulary &vocabulary, vector<int> &queryInd)
 {
-  list<pair<int, double>> bestInd{ pair<int, double>(0, set[0].GetDistFromQuery(vocabulary, queryInd)) };
+  list<pair<int, double>> bestInd{ pair<int, double>(0, set[0].getDistFromQuery(vocabulary, queryInd)) };
   double value = 0.0;
 
   // Iterate through the whole set to find best options
   for (size_t pairInd = 1; pairInd < set.size(); ++pairInd)
   {
     // cache value of current option
-    value = set[pairInd].GetDistFromQuery(vocabulary, queryInd);
+    value = set[pairInd].getDistFromQuery(vocabulary, queryInd);
     pair<int, double> curPair(pairInd, value);
 
     // insert into list maintaining sort order (sorted by value)
@@ -66,7 +66,7 @@ list<pair<int, double>> findBest(int count, QApairsQAset &set,
   return bestInd;
 }
 
-void QAMachineCore::askQuestion(std::string question)
+void MachineCore::askQuestion(std::string question)
 {
   vector<int> queryInds;
 
@@ -74,12 +74,12 @@ void QAMachineCore::askQuestion(std::string question)
   currentQuestion = question;
 
 
-  queryInds = vocabulary.ParseStrByVocabInds(question);
+  queryInds = vocabulary.parseStrByVocabInds(question);
 
   bestMatchInd = findBest(maxOptions, pairsQAset, vocabulary, queryInds);
 }
 
-std::string QAMachineCore::getAnswer()
+std::string MachineCore::getAnswer()
 {
   if (bestMatchInd.front().second == -1)
     return "Can't find answer";
@@ -87,7 +87,7 @@ std::string QAMachineCore::getAnswer()
   return pairsQAset[bestMatchInd.front().first].answer;
 }
 
-void QAMachineCore::PrintAnswer(void)
+void MachineCore::printAnswer(void)
 {
   // Check if answer is valid
   if (bestMatchInd.front().second == -1)
@@ -116,8 +116,8 @@ void QAMachineCore::PrintAnswer(void)
   
 #ifndef NDEBUG
 
-    vector<int> indWordsQuestion = vocabulary.ParseStrByVocabInds(currentQuestion);
-    vector<int> indWordsOption = vocabulary.ParseStrByVocabInds(pairsQAset[option.first].question);
+    vector<int> indWordsQuestion = vocabulary.parseStrByVocabInds(currentQuestion);
+    vector<int> indWordsOption = vocabulary.parseStrByVocabInds(pairsQAset[option.first].question);
 
     // Print additional debug information
     std::cout << "debug-info: <word>-<idf>"  << endl;
@@ -133,13 +133,13 @@ void QAMachineCore::PrintAnswer(void)
   std::cout << "----------------------------------------------" << endl << endl;
 }
 
-void QAMachineCore::LearnFromTSV(const string & fileName, const std::string &rejectedWordsFileName)
+void MachineCore::learnFromTSV(const string & fileName, const std::string &rejectedWordsFileName)
 {
-  vocabulary.GenerateVocabularyFromQAFile(fileName, rejectedWordsFileName, pairsQAset);
-  pairsQAset.IndexByVocab(vocabulary);
+  vocabulary.generateVocabularyFromQAFile(fileName, rejectedWordsFileName, pairsQAset);
+  pairsQAset.getIndexByVocab(vocabulary);
   std::cout << "Vocabulary size: " << vocabulary.size() << endl;
 }
 
-QAMachineCore::~QAMachineCore()
+MachineCore::~MachineCore()
 {
 }

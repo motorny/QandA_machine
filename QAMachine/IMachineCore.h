@@ -6,7 +6,7 @@
 #include <fstream>
 
 
-class IQAMachineCore
+class IMachineCore
 {
 public:
 
@@ -14,11 +14,11 @@ public:
 	
 	virtual std::string getAnswer(void) = 0;
 
-  virtual void PrintAnswer(void) = 0;
+  virtual void printAnswer(void) = 0;
 
-	virtual void LearnFromTSV(const std::string & fileName, const std::string &rejectedWordsFileName) = 0;
+	virtual void learnFromTSV(const std::string & fileName, const std::string &rejectedWordsFileName) = 0;
 
-    virtual ~IQAMachineCore() {};
+    virtual ~IMachineCore() {};
 };
 
 #endif // !__QUESTION_ANSWER_MACHINE_INTERFACE__

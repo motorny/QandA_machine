@@ -1,13 +1,13 @@
-#ifndef __QA_VOCABULARY_H__
-#define __QA_VOCABULARY_H__
+#ifndef __VOCABULARY_H__
+#define __VOCABULARY_H__
 #pragma once
 
 #include <string>
 #include <vector>
 
-#include "QApairsQAset.h"
+#include "QApairsSet.h"
 
-class QAVocabulary
+class Vocabulary
 {
 public:
 
@@ -21,11 +21,11 @@ public:
    * \param rejectedWordsFileName File with words to avoid in vocabulary
    * \pairsQAset Object to put in strings of questions and answers
    */
-  void GenerateVocabularyFromQAFile(const std::string &dataFileName, 
-    const std::string &rejectedWordsFileName, QApairsQAset & pairsQAset);
+  void generateVocabularyFromQAFile(const std::string &dataFileName, 
+    const std::string &rejectedWordsFileName, QAPairsSet & pairsQAset);
   
   
-  int GetWordInd(const std::string &word) const;
+  int getWordInd(const std::string &word) const;
   size_t size();
 
   /*! \class WordPair
@@ -72,7 +72,7 @@ public:
    * \param str String to parse
    * \return Vector of contained words' indeces
    */
-  std::vector<int> ParseStrByVocabInds(std::string & str) const;
+  std::vector<int> parseStrByVocabInds(std::string & str) const;
 
   std::vector<WordPair>::iterator begin(void);
 
@@ -86,4 +86,4 @@ private:
   static const std::string delimetrs;
 };
 
-#endif // !__QA_VOCABULARY_H__
+#endif // !__VOCABULARY_H__

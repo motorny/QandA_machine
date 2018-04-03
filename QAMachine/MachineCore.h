@@ -5,30 +5,30 @@
 #include <vector>
 #include <list>
 
-#include "IQAMachineCore.h"
-#include "QAVocabulary.h"
-#include "QApairsQAset.h"
+#include "IMachineCore.h"
+#include "Vocabulary.h"
+#include "QApairsSet.h"
 
 
-class QAMachineCore : public IQAMachineCore
+class MachineCore : public IMachineCore
 {
 public:
 
-  QAMachineCore(void);
+  MachineCore(void);
 
   void askQuestion(std::string question) override;
 
   std::string getAnswer() override;
 
-  void PrintAnswer(void);
+  void printAnswer(void);
 
-  void LearnFromTSV(const std::string & fileName, const std::string &rejectedWordsFileName) override;
+  void learnFromTSV(const std::string & fileName, const std::string &rejectedWordsFileName) override;
 
-  ~QAMachineCore();
+  ~MachineCore();
 
 private:
-  QAVocabulary vocabulary;
-  QApairsQAset pairsQAset;
+  Vocabulary vocabulary;
+  QAPairsSet pairsQAset;
 
   std::string currentQuestion; //!< Current question asked
                                /*!< Is used in analysis that might be needed after

@@ -3,13 +3,13 @@
 #include <iostream>
 #include <algorithm>
 
-#include "QAVocabulary.h"
+#include "Vocabulary.h"
 
 using namespace std;
 
-const string QAVocabulary::delimetrs = " ,.!?";
+const string Vocabulary::delimetrs = " ,.!?";
 
-void QAVocabulary::GenerateVocabularyFromQAFile(const string & dataFileName, const string & rejectedWordsFileName, QApairsQAset & pairsQAset)
+void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const string & rejectedWordsFileName, QAPairsSet & pairsQAset)
 {
   ifstream qAPairsIFS(dataFileName);
 
@@ -36,7 +36,7 @@ void QAVocabulary::GenerateVocabularyFromQAFile(const string & dataFileName, con
     if (fNotSp != -1)
       answer = answer.substr(fNotSp);
 
-    pairsQAset.AddPair(question, answer);
+    pairsQAset.addPair(question, answer);
 
     // iterate through words of question
     size_t start = question.find_first_not_of(delimetrs), end = 0;
@@ -82,7 +82,7 @@ void QAVocabulary::GenerateVocabularyFromQAFile(const string & dataFileName, con
   }
 }
 
-int QAVocabulary::GetWordInd(const string & word) const
+int Vocabulary::getWordInd(const string & word) const
 {
   int left = 0, right = vocabulary.size() - 1;
   int middle;
@@ -103,17 +103,17 @@ int QAVocabulary::GetWordInd(const string & word) const
   return -1;
 }
 
-size_t QAVocabulary::size()
+size_t Vocabulary::size()
 {
   return vocabulary.size();
 }
 
-QAVocabulary::WordPair & QAVocabulary::operator[](size_t ind)
+Vocabulary::WordPair & Vocabulary::operator[](size_t ind)
 {
   return vocabulary[ind];
 }
 
-std::vector<int> QAVocabulary::ParseStrByVocabInds(std::string & str) const
+std::vector<int> Vocabulary::parseStrByVocabInds(std::string & str) const
 {
   string word;
   vector<int> res;
@@ -127,7 +127,7 @@ std::vector<int> QAVocabulary::ParseStrByVocabInds(std::string & str) const
     word = str.substr(start, end - start);
     // make word lowercase
     transform(word.begin(), word.end(), word.begin(), ::tolower);
-    if ((wordInd = this->GetWordInd(word)) != -1)
+    if ((wordInd = this->getWordInd(word)) != -1)
     {
       // check for wordInd uniquenss
       indRepeat = false;
@@ -149,7 +149,7 @@ std::vector<int> QAVocabulary::ParseStrByVocabInds(std::string & str) const
     word = str.substr(start);
     // make word lowercase
     transform(word.begin(), word.end(), word.begin(), ::tolower);
-    if ((wordInd = this->GetWordInd(word)) != -1)
+    if ((wordInd = this->getWordInd(word)) != -1)
     {
       // check for wordInd uniquenss
       indRepeat = false;
@@ -165,12 +165,12 @@ std::vector<int> QAVocabulary::ParseStrByVocabInds(std::string & str) const
   return res;
 }
 
-vector<QAVocabulary::WordPair>::iterator QAVocabulary::begin(void)
+vector<Vocabulary::WordPair>::iterator Vocabulary::begin(void)
 {
   return vocabulary.begin();
 }
 
-vector<QAVocabulary::WordPair>::iterator QAVocabulary::end(void)
+vector<Vocabulary::WordPair>::iterator Vocabulary::end(void)
 {
   return vocabulary.end();
 }

@@ -1,18 +1,18 @@
 #include <algorithm>
 
-#include "QApairsQAset.h"
-#include "QAVocabulary.h"
+#include "QApairsSet.h"
+#include "Vocabulary.h"
 
 using namespace std;
 
-const string QApairsQAset::delimetrs = " ,.!?";
+const string QAPairsSet::delimetrs = " ,.!?";
 
-void QApairsQAset::AddPair(const std::string & question, const std::string & answer)
+void QAPairsSet::addPair(const std::string & question, const std::string & answer)
 {
   pairsArr.push_back(QAPair(question, answer));
 }
 
-void QApairsQAset::IndexByVocab(QAVocabulary & vocabulary)
+void QAPairsSet::getIndexByVocab(Vocabulary & vocabulary)
 {
   vector<int> questionInds;
 
@@ -24,7 +24,7 @@ void QApairsQAset::IndexByVocab(QAVocabulary & vocabulary)
 
   for (auto &qaP : pairsArr)
   {
-    qaP.wordIndeces = vocabulary.ParseStrByVocabInds(qaP.question);
+    qaP.wordIndeces = vocabulary.parseStrByVocabInds(qaP.question);
 
     // increase df for all words, which was met
     for (int wI : qaP.wordIndeces)
@@ -42,27 +42,27 @@ void QApairsQAset::IndexByVocab(QAVocabulary & vocabulary)
 
 }
 
-size_t QApairsQAset::size()
+size_t QAPairsSet::size()
 {
   return pairsArr.size();
 }
 
-QApairsQAset::QAPair & QApairsQAset::operator[](size_t ind)
+QAPairsSet::QAPair & QAPairsSet::operator[](size_t ind)
 {
   return pairsArr[ind];
 }
 
-std::vector<QApairsQAset::QAPair>::iterator QApairsQAset::begin(void)
+std::vector<QAPairsSet::QAPair>::iterator QAPairsSet::begin(void)
 {
   return pairsArr.begin();
 }
 
-std::vector<QApairsQAset::QAPair>::iterator QApairsQAset::end(void)
+std::vector<QAPairsSet::QAPair>::iterator QAPairsSet::end(void)
 {
   return pairsArr.end();
 }
 
-double QApairsQAset::QAPair::GetDistFromQuery(QAVocabulary &vocabulary, std::vector<int>& queryWordIndeces)
+double QAPairsSet::QAPair::getDistFromQuery(Vocabulary &vocabulary, std::vector<int>& queryWordIndeces)
 {
   double val = 0.0;
 

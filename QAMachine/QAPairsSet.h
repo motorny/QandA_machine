@@ -3,23 +3,23 @@
 #include <vector>
 #include <string>
 
-class QAVocabulary;
+class Vocabulary;
 
-class QApairsQAset
+class QAPairsSet
 {
 public:
   
-  void AddPair(const std::string &question, const std::string &answer);
+  void addPair(const std::string &question, const std::string &answer);
   
 
   /*! \brief Assign vector of word's indexes to all questions and calculate idf
    * 
-   * Fill wordIndeces wordIndeces vector in each QAPair using ParseStrByVocabInds 
+   * Fill wordIndeces wordIndeces vector in each QAPair using parseStrByVocabInds 
    * function. 
    * Calculate idf (inverse document frequency) for each word in vocabulary
    * \param vocabulary Vocabulary to get words' indeces from
    */
-  void IndexByVocab(QAVocabulary &vocabulary);
+  void getIndexByVocab(Vocabulary &vocabulary);
   
   size_t size();
 
@@ -36,10 +36,10 @@ public:
     std::vector<int> wordIndeces;
     double invEuqlidSize;
 
-    double GetDistFromQuery(QAVocabulary &vocabulary, std::vector<int> &queryWordIndeces);
+    double getDistFromQuery(Vocabulary &vocabulary, std::vector<int> &queryWordIndeces);
   };
 
-  QApairsQAset::QAPair& operator[](size_t ind);
+  QAPairsSet::QAPair& operator[](size_t ind);
   std::vector<QAPair>::iterator begin(void);
   std::vector<QAPair>::iterator end(void);
 

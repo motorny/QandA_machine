@@ -24,27 +24,33 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QAMachineCore.cpp">
+    <ClCompile Include="Stemmer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QAVocabulary.cpp">
+    <ClCompile Include="Vocabulary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QApairsQAset.cpp">
+    <ClCompile Include="MachineCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QAPairsSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="QAMachineCore.h">
+    <ClInclude Include="Stemmer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IQAMachineCore.h">
+    <ClInclude Include="Vocabulary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QAVocabulary.h">
+    <ClInclude Include="MachineCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QApairsQAset.h">
+    <ClInclude Include="IMachineCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QAPairsSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
