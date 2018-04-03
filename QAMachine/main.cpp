@@ -6,6 +6,16 @@
 
 #pragma warning(disable: 4100)
 
+
+/*
+Overcoming Qt build errors:
+- go to solution explorer, rightclick on solution and choose " Change solution's Qt vesion"
+- go to solution explorer, rightclick on project "test" and choose "Qt project settings", then edit "Qt version field"
+*/
+
+
+
+
 int main(int argc, char* argv[])
 {
   setlocale(LC_ALL, "Russian");
@@ -14,7 +24,10 @@ int main(int argc, char* argv[])
 
   MachineCore core;
 
+  std::cout << "For working with russian language, please, set console font to \"Lucida Console\"" << std::endl;
+  std::cout << "Parsing ..." << std::endl;
   core.learnFromTSV("quiz.txt", "rejected.txt");
+
 
   std::cout << "LETS GO\n\n" << std::endl;
   std::string str = "";

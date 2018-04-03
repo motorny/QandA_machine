@@ -101,6 +101,7 @@ void MachineCore::printAnswer(void)
   std::cout << "----------------------------------------------" << endl;
   std::cout << "Closest question: " << pairsQAset[bestMatchInd.front().first].question <<
      " -> " << pairsQAset[bestMatchInd.front().first].answer << "(" << bestMatchInd.front().second << ")" << endl;
+  std::cout << std::endl;
   std::cout << ">> Other options: " << endl;
 
   // list other options from bestMatch as well
@@ -127,6 +128,8 @@ void MachineCore::printAnswer(void)
     for (int wordInd : indWordsOption)
       cout << vocabulary[wordInd].word << " " << vocabulary[wordInd].idf << "| ";
 
+    std::cout << std::endl;
+    std::cout << std::endl;
 #endif // NDEBUG
   }
 
