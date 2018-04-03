@@ -192,14 +192,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\QAMachineCore.h" />
-    <ClInclude Include="..\QApairsQAset.h" />
-    <ClInclude Include="..\QAVocabulary.h" />
+    <ClInclude Include="..\MachineCore.h" />
+    <ClInclude Include="..\QAPairsSet.h" />
+    <ClInclude Include="..\Vocabulary.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\QAMachineCore.cpp" />
-    <ClCompile Include="..\QApairsQAset.cpp" />
-    <ClCompile Include="..\QAVocabulary.cpp" />
+    <ClCompile Include="..\MachineCore.cpp" />
+    <ClCompile Include="..\QAPairsSet.cpp" />
+    <ClCompile Include="..\Vocabulary.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

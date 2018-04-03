@@ -39,24 +39,24 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\QAVocabulary.h">
+    <ClInclude Include="..\QAPairsSet.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\QApairsQAset.h">
+    <ClInclude Include="..\Vocabulary.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\QAMachineCore.h">
+    <ClInclude Include="..\MachineCore.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\QAVocabulary.cpp">
+    <ClCompile Include="..\MachineCore.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\QApairsQAset.cpp">
+    <ClCompile Include="..\QAPairsSet.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\QAMachineCore.cpp">
+    <ClCompile Include="..\Vocabulary.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
