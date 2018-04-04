@@ -30,10 +30,10 @@
     <ClCompile Include="Vocabulary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MachineCore.cpp">
+    <ClCompile Include="QAPairsSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QAPairsSet.cpp">
+    <ClCompile Include="QAMachineCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,13 +44,13 @@
     <ClInclude Include="Vocabulary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MachineCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IMachineCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QAPairsSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QAMachineCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

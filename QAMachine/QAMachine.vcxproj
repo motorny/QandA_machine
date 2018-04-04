@@ -159,13 +159,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MachineCore.cpp" />
+    <ClCompile Include="QAMachineCore.cpp" />
     <ClCompile Include="QAPairsSet.cpp" />
     <ClCompile Include="Vocabulary.cpp" />
     <ClCompile Include="Stemmer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MachineCore.h" />
+    <ClInclude Include="QAMachineCore.h" />
     <ClInclude Include="IMachineCore.h" />
     <ClInclude Include="QAPairsSet.h" />
     <ClInclude Include="Vocabulary.h" />

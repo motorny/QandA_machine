@@ -104,9 +104,9 @@ void QAUnitTests::SimilarQuestionTest_data()
 
 void QAUnitTests::SimilarQuestionTest()
 {
-  MachineCore core;
+  QAMachineCore core;
 
-  core.learnFromTSV("testFiles/QA_set.txt", "testFiles/vocabTestRejected_empty.txt");
+  core.learnFromFile("testFiles/QA_set.txt", "testFiles/vocabTestRejected_empty.txt");
   QFETCH(std::string, question);
   QFETCH(std::string, result);
   core.askQuestion(question);
