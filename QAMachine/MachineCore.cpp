@@ -3,6 +3,7 @@
 #include <map>
 #include <sstream>
 #include <algorithm>
+#include <iterator>
 
 #include "MachineCore.h"
 
@@ -72,10 +73,7 @@ void MachineCore::askQuestion(std::string question)
 
   // Remember current question for furtherer use
   currentQuestion = question;
-
-
   queryInds = vocabulary.parseStrByVocabInds(question);
-
   bestMatchInd = findBest(maxOptions, pairsQAset, vocabulary, queryInds);
 }
 
@@ -85,6 +83,12 @@ std::string MachineCore::getAnswer()
     return "Can't find answer";
 
   return pairsQAset[bestMatchInd.front().first].answer;
+}
+
+template <class InputIterator, class T>
+inline bool contains(InputIterator start, InputIterator end, const T& element)
+{
+  return find(start, end, element) != end;
 }
 
 void MachineCore::printAnswer(void)
@@ -120,12 +124,15 @@ void MachineCore::printAnswer(void)
     vector<int> indWordsQuestion = vocabulary.parseStrByVocabInds(currentQuestion);
     vector<int> indWordsOption = vocabulary.parseStrByVocabInds(pairsQAset[option.first].question);
 
-    // Print additional debug information
-    std::cout << "debug-info: <word>-<idf>"  << endl;
-    for (int wordInd : indWordsQuestion)
-      cout << vocabulary[wordInd].word << " " << vocabulary[wordInd].idf << "| ";
+    vector<int> indWordsCommon;
 
     for (int wordInd : indWordsOption)
+      if (contains(indWordsQuestion.begin(), indWordsQuestion.end(), wordInd))
+        indWordsCommon.push_back(wordInd);
+
+    // Print additional debug information
+    std::cout << "debug-info: <word>-<idf>"  << endl;
+    for (int wordInd : indWordsCommon)
       cout << vocabulary[wordInd].word << " " << vocabulary[wordInd].idf << "| ";
 
     std::cout << std::endl;
