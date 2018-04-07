@@ -34,29 +34,27 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="tst_qaunittests.cpp">
-      <Filter>Source Files</Filter>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\QAPairsSet.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Vocabulary.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\MachineCore.h">
+    <ClInclude Include="..\QAMachineCore.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\MachineCore.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\QAPairsSet.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Vocabulary.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tst_qaunittests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\QAMachineCore.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>

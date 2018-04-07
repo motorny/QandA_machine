@@ -7,7 +7,7 @@
 #include <Windows.h>
 #include <iostream>
 
-#include "..\MachineCore.h"
+#include "..\QAMachineCore.h"
 
 Q_DECLARE_METATYPE(std::string);
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "MachineCore.h"
+#include "QAMachineCore.h"
 #include <iostream>
 #include <locale>
 #include <Windows.h>

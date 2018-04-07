@@ -82,7 +82,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR="./";QT_NO_DEBUG;QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=".";NDEBUG;QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR="./";QT_NO_DEBUG;QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=".";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -124,7 +124,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR="./";QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=".";QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR="./";QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=".";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -155,7 +155,8 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <QtMoc Include="tst_qaunittests.cpp">
+    <ClCompile Include="..\QAMachineCore.cpp" />
+    <ClCompile Include="tst_qaunittests.cpp">
       <OutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\%(Filename).moc</OutputFile>
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">input</DynamicSource>
       <ExecutionDescription Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc'ing %(Identity)...</ExecutionDescription>
@@ -166,7 +167,9 @@
       <ExecutionDescription Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc'ing %(Identity)...</ExecutionDescription>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\.;.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtTest;$(QTDIR)\include\QtCore;.\release;$(QTDIR)\mkspecs\win32-msvc2015</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR=./;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=.;NDEBUG</Define>
-    </QtMoc>
+      <InputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">tst_qaunittests.cpp</InputFile>
+      <InputFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">tst_qaunittests.cpp</InputFile>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GeneratedFiles\Debug\tst_qaunittests.moc">
@@ -192,12 +195,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MachineCore.h" />
+    <ClInclude Include="..\QAMachineCore.h" />
     <ClInclude Include="..\QAPairsSet.h" />
     <ClInclude Include="..\Vocabulary.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\MachineCore.cpp" />
     <ClCompile Include="..\QAPairsSet.cpp" />
     <ClCompile Include="..\Vocabulary.cpp" />
   </ItemGroup>
@@ -208,7 +210,7 @@
   <ImportGroup Label="ExtensionTargets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" Qt5Version_x0020_Win32="msvc2015" />
+      <UserProperties UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" Qt5Version_x0020_Win32="5.7.1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
