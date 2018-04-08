@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 
   std::cout << "For working with russian language, please, set console font to \"Lucida Console\"" << std::endl;
   std::cout << "Parsing ..." << std::endl;
-  core.learnFromFile("quiz.txt", "rejected.txt");
+  core.learnFromFile("../dataset/quiz.txt", "../dataset/rejected.txt");
 
 
   std::cout << "LETS GO\n\n" << std::endl;

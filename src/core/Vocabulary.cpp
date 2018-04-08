@@ -13,9 +13,16 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
 {
   ifstream qAPairsIFS(dataFileName);
 
-  if (!qAPairsIFS.is_open()) {
+  if (!qAPairsIFS.is_open())
+  {
     cout << "Could not open QuestionsAnswers pairs file: " << dataFileName << endl;
-    return;
+    string dataFileNameTry = "../" + dataFileName;
+    qAPairsIFS = ifstream(dataFileNameTry);
+    if (!qAPairsIFS.is_open())
+    {
+      cout << "Could not open QuestionsAnswers pairs file: " << dataFileNameTry << endl;
+      return;
+    }
   }
 
   map<string, int> tempMap; // map used to push words in O(log(n))
@@ -64,9 +71,16 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
   // delete rejected words from map
   string rWord;
   ifstream rejectedWordsIFS(rejectedWordsFileName);
-  if (!rejectedWordsIFS.is_open()) {
+  if (!rejectedWordsIFS.is_open())
+  {
     cout << "Could not open Rejected words file: " << rejectedWordsFileName << endl;
-    return;
+    string rejectedWordsFileNameTry = "../" + rejectedWordsFileName;
+    rejectedWordsIFS = ifstream(rejectedWordsFileNameTry);
+    if (!rejectedWordsIFS.is_open())
+    {
+      cout << "Could not open Rejected words file: " << rejectedWordsFileNameTry << endl;
+      return;
+    }
   }
 
   while (rejectedWordsIFS >> rWord)
