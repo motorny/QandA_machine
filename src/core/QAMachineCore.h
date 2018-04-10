@@ -83,13 +83,13 @@ public:
   /*! \brief Learning function from TSV file
   *
   *  Function loads file (semi-colon separated) in strict
-  *  grammar: <question>; <answer> \r\n
+  *  grammar: \<question\>; \<answer\> \\r\\n
   *  All questions are processed to exclude words listed
   *  in rejected words file
   *  \warning for meaningful results file should be at least 10k
   *  question-answer pairs long in general.
-  *  \param filename - name of the file
-  *  \param rejectedWordsFilename - name of the file with rejected words
+  *  \param fileName - name of the file
+  *  \param rejectedWordsFileName - name of the file with rejected words
   */
   void learnFromFile(const std::string & fileName,
     const std::string &rejectedWordsFileName) override;

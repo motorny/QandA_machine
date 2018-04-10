@@ -21,7 +21,7 @@ public:
    * Side-effect: field idf will conatin count of times this word met in full dataset. 
    * \param dataFileName File with questions and answers
    * \param rejectedWordsFileName File with words to avoid in vocabulary
-   * \pairsQAset Object to put in strings of questions and answers
+   * \param pairsQAset Object to put in strings of questions and answers
    */
   void generateVocabularyFromQAFile(const std::string &dataFileName, 
     const std::string &rejectedWordsFileName, QAPairsSet & pairsQAset);
