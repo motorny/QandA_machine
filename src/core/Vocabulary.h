@@ -6,7 +6,9 @@
 #include <vector>
 
 #include "QApairsSet.h"
-
+/*! \brief Class to store vocabulary and handle all work with it 
+*
+*/
 class Vocabulary
 {
 public:
@@ -25,7 +27,19 @@ public:
     const std::string &rejectedWordsFileName, QAPairsSet & pairsQAset);
   
   
+  /*! \brief Find word in vocabulary
+   *
+   * Get index of word in current vocabulary, returns -1 if vocabulary does not contain 
+   * requested word
+   * \param word Word to find in vocabulary
+   * \return Index of word or -1
+   */
   int getWordInd(const std::string &word) const;
+
+  /*! \brief Get current size of vocabulary
+  * Size of vocabulary is equal to count of different words in it.
+  *  \return Size of vocabulary
+  */
   size_t size();
 
   /*! \class WordPair
@@ -43,22 +57,21 @@ public:
     explicit WordPair(const std::string &word, double idf = 0.0)
       : word(word), idf(idf) { }
 
-    /*! \brief Setter for idf value
-     *
-     *  Allows to set custom idf to wordPair instance
-     *  Side-effect: idf changed
-     *  \param idf - new idf to set
-     */
-    void setIdf(double idf_)
-    {
-      idf = idf_;
-    }
+    ///*! \brief Setter for idf value
+    // *
+    // *  Allows to set custom idf to wordPair instance
+    // *  Side-effect: idf changed
+    // *  \param idf - new idf to set
+    // */
+    //void setIdf(double idf_)
+    //{
+    //  idf = idf_;
+    //}
 
     std::string word; //!< word
     double idf; //!< IDF (inverse document frequency)
   };
 
-  WordPair& operator[](size_t ind);
   
 
   /*! \brief Parser for strings to get its' words indeces
@@ -74,16 +87,35 @@ public:
    */
   std::vector<int> parseStrByVocabInds(std::string & str) const;
 
+  /*! \brief Get an iterator to the beginning of vocabulary
+   *
+   * Used in range-based loops
+   * \return Iterator to the beginning
+   */
   std::vector<WordPair>::iterator begin(void);
 
+  /*! \brief Get an iterator to the beginning of vocabulary
+   *
+   * Used in range-based loops
+   * \return Iterator to the beginning
+   */
   std::vector<WordPair>::iterator end(void);
+
+  /*! \brief Access vocabulary element by index 
+  *
+  * Access WordPair, specified by word's index
+  * \param ind Index
+  * \return WordPaie with requested index
+  */
+  WordPair& operator[](size_t ind);
 
 private:
 
-  std::vector<WordPair> vocabulary;
- 
+  std::vector<WordPair> vocabulary;//!< Container for WordPairs, main class'es data conatiner
 
-  static const std::string delimetrs;
+  static const std::string delimetrs;//!< String of delimetrs
+                                     /*!< Contains all delimetrs, which are used to
+                                     *   split questions to words.*/
 };
 
 #endif // !__VOCABULARY_H__
