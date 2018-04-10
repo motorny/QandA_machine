@@ -107,7 +107,9 @@ private:
                                /*!< Is used in analysis that might be needed after
                                 *   processing in askQuestion is complete */
 
-  static const std::string delimetrs;
+  static const std::string delimetrs;//!< String of delimetrs
+                                     /*!< Contains all delimetrs, which are used to
+                                     *   split questions to words.*/
 
   std::list<std::pair<int, double>> bestMatchInd; //!< Array of best options
                                                   /*!< Holds indexes to words in set

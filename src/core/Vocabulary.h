@@ -94,10 +94,10 @@ public:
    */
   std::vector<WordPair>::iterator begin(void);
 
-  /*! \brief Get an iterator to the beginning of vocabulary
+  /*! \brief Get an iterator to the end of vocabulary
    *
    * Used in range-based loops
-   * \return Iterator to the beginning
+   * \return Iterator to the end
    */
   std::vector<WordPair>::iterator end(void);
 
@@ -105,7 +105,7 @@ public:
   *
   * Access WordPair, specified by word's index
   * \param ind Index
-  * \return WordPaie with requested index
+  * \return WordPair with requested index
   */
   WordPair& operator[](size_t ind);
 
