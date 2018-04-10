@@ -23,6 +23,7 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
       cout << "Could not open QuestionsAnswers pairs file: " << dataFileNameTry << endl;
       return;
     }
+    cout << "Opened QuestionsAnswers pairs file: " << dataFileNameTry << endl;
   }
 
   map<string, int> tempMap; // map used to push words in O(log(n))
@@ -81,6 +82,7 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
       cout << "Could not open Rejected words file: " << rejectedWordsFileNameTry << endl;
       return;
     }
+    cout << "Opened Rejected words file: " << rejectedWordsFileNameTry << endl;
   }
 
   while (rejectedWordsIFS >> rWord)
