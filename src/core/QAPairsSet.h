@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <string>
-
+#include "Stemmer.h"
 class Vocabulary;
 
 

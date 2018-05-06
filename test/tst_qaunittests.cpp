@@ -29,6 +29,8 @@ public:
   void IdfTest();
   void StrToIndexTest_data();
   void StrToIndexTest();
+  void StemmerTest_data();
+  void StemmerTest();
 };
 
 
@@ -42,17 +44,16 @@ void QAUnitTests::VocabularyTest_data()
   QTest::addColumn<std::string>("word");
   QTest::addColumn<bool>("result");
 
-  QTest::newRow("vocab_data_1") << std::string("привет") << true;
-  QTest::newRow("vocab_data_2") << std::string("вопрос") << true;
-  QTest::newRow("vocab_data_3") << std::string("компьютер") << true;
-  QTest::newRow("vocab_data_4") << std::string("обработка") << true;
-  QTest::newRow("vocab_data_5") << std::string("программирование") << true;
-  QTest::newRow("vocab_data_6") << std::string("часы") << false;
-  QTest::newRow("vocab_data_7") << std::string("рак") << false;
-  QTest::newRow("vocab_data_8") << std::string("стул") << false;
-  QTest::newRow("vocab_data_9") << std::string("мышь") << false;
+  QTest::newRow("vocab_data_1") << std::string("РїСЂРёРІРµС‚") << true;
+  QTest::newRow("vocab_data_2") << std::string("РІРѕРїСЂРѕСЃ") << true;
+  QTest::newRow("vocab_data_3") << std::string("РєРѕРјРїСЊСЋС‚РµСЂ") << true;
+  QTest::newRow("vocab_data_4") << std::string("РѕР±СЂР°Р±РѕС‚РєР°") << true;
+  QTest::newRow("vocab_data_5") << std::string("РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ") << true;
+  QTest::newRow("vocab_data_6") << std::string("С‡Р°СЃС‹") << false;
+  QTest::newRow("vocab_data_7") << std::string("СЂР°Рє") << false;
+  QTest::newRow("vocab_data_8") << std::string("СЃС‚СѓР»") << false;
+  QTest::newRow("vocab_data_9") << std::string("РјС‹С€СЊ") << false;
 }
-
 
 void QAUnitTests::VocabularyTest()
 {
@@ -69,16 +70,16 @@ void QAUnitTests::VocabularyRejectionTest_data()
   QTest::addColumn<std::string>("word");
   QTest::addColumn<bool>("result");
 
-  QTest::newRow("vocab_rej_data_1") << std::string("привет") << true;
-  QTest::newRow("vocab_rej_data_2") << std::string("компьютер") << true;
-  QTest::newRow("vocab_rej_data_3") << std::string("обработка") << true;
+  QTest::newRow("vocab_rej_data_1") << std::string("РїСЂРёРІРµС‚") << true;
+  QTest::newRow("vocab_rej_data_2") << std::string("РєРѕРјРїСЊСЋС‚РµСЂ") << true;
+  QTest::newRow("vocab_rej_data_3") << std::string("РѕР±СЂР°Р±РѕС‚РєР°") << true;
 
-  QTest::newRow("vocab_rej_data_4") << std::string("программирование") << false;
-  QTest::newRow("vocab_rej_data_5") << std::string("вопрос") << false;
-  QTest::newRow("vocab_rej_data_6") << std::string("кот") << false;
+  QTest::newRow("vocab_rej_data_4") << std::string("РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ") << false;
+  QTest::newRow("vocab_rej_data_5") << std::string("РІРѕРїСЂРѕСЃ") << false;
+  QTest::newRow("vocab_rej_data_6") << std::string("РєРѕС‚") << false;
 
-  QTest::newRow("vocab_rej_data_7") << std::string("блокнот") << false;
-  QTest::newRow("vocab_rej_data_8") << std::string("предлог") << false;
+  QTest::newRow("vocab_rej_data_7") << std::string("Р±Р»РѕРєРЅРѕС‚") << false;
+  QTest::newRow("vocab_rej_data_8") << std::string("РїСЂРµРґР»РѕРі") << false;
 }
 
 void QAUnitTests::VocabularyRejectionTest()
@@ -96,10 +97,10 @@ void QAUnitTests::SimilarQuestionTest_data()
   QTest::addColumn<std::string>("question");
   QTest::addColumn<std::string>("result");
 
-  QTest::newRow("answer_similar_data_1") << std::string("Кто выиграл олимпиаду 2018?") << std::string("Норвегия");
-  QTest::newRow("answer_similar_data_2") << std::string("Какая самая быстрая машина в мире?") << std::string("Феррари");
-  QTest::newRow("answer_similar_data_3") << std::string("Какого цвета солнце?") << std::string("Зеленое");
-  QTest::newRow("answer_similar_data_4") << std::string("Кто первый русский космонавт?") << std::string("Юрий Гагарин");
+  QTest::newRow("answer_similar_data_1") << std::string("РљС‚Рѕ РІС‹РёРіСЂР°Р» РѕР»РёРјРїРёР°РґСѓ 2018?") << std::string("РќРѕСЂРІРµРіРёСЏ");
+  QTest::newRow("answer_similar_data_2") << std::string("РљР°РєР°СЏ СЃР°РјР°СЏ Р±С‹СЃС‚СЂР°СЏ РјР°С€РёРЅР° РІ РјРёСЂРµ?") << std::string("Р¤РµСЂСЂР°СЂРё");
+  QTest::newRow("answer_similar_data_3") << std::string("РљР°РєРѕРіРѕ С†РІРµС‚Р° СЃРѕР»РЅС†Рµ?") << std::string("Р—РµР»РµРЅРѕРµ");
+  QTest::newRow("answer_similar_data_4") << std::string("РљС‚Рѕ РїРµСЂРІС‹Р№ СЂСѓСЃСЃРєРёР№ РєРѕСЃРјРѕРЅР°РІС‚?") << std::string("Р®СЂРёР№ Р“Р°РіР°СЂРёРЅ");
 }
 
 void QAUnitTests::SimilarQuestionTest()
@@ -118,10 +119,10 @@ void QAUnitTests::IdfTest_data()
   QTest::addColumn<std::string>("word");
   QTest::addColumn<double>("expIdf");
 
-  QTest::newRow("idf_data_1") << std::string("Кто") << (log(4.0 / 2.0));
-  QTest::newRow("idf_data_2") << std::string("выиграл") << (log(4.0 / 1.0));
+  QTest::newRow("idf_data_1") << std::string("РљС‚Рѕ") << (log(4.0 / 2.0));
+  QTest::newRow("idf_data_2") << std::string("РІС‹РёРіСЂР°Р»") << (log(4.0 / 1.0));
   QTest::newRow("idf_data_3") << std::string("2018") << (log(4.0 / 1.0));
-  QTest::newRow("idf_data_4") << std::string("в") << (log(4.0 / 1.0));
+  QTest::newRow("idf_data_4") << std::string("РІ") << (log(4.0 / 1.0));
 }
 
 void QAUnitTests::IdfTest()
@@ -140,6 +141,7 @@ void QAUnitTests::IdfTest()
 void QAUnitTests::StrToIndexTest_data()
 {
 }
+
 void QAUnitTests::StrToIndexTest()
 {
   Vocabulary v;
@@ -148,9 +150,9 @@ void QAUnitTests::StrToIndexTest()
   pSet.getIndexByVocab(v);
 
   std::list<int> expIndList_data1;  
-  expIndList_data1.push_back(v.getWordInd("кто"));
-  expIndList_data1.push_back(v.getWordInd("выиграл"));
-  expIndList_data1.push_back(v.getWordInd("олимпиаду"));
+  expIndList_data1.push_back(v.getWordInd("РєС‚Рѕ"));
+  expIndList_data1.push_back(v.getWordInd("РІС‹РёРіСЂР°Р»"));
+  expIndList_data1.push_back(v.getWordInd("РѕР»РёРјРїРёР°РґСѓ"));
   expIndList_data1.push_back(v.getWordInd("2018"));
   expIndList_data1.sort();
 
@@ -161,9 +163,9 @@ void QAUnitTests::StrToIndexTest()
   QVERIFY(indList_data1 == expIndList_data1);
 
   std::list<int> expIndList_data2;
-  expIndList_data2.push_back(v.getWordInd("какого"));
-  expIndList_data2.push_back(v.getWordInd("цвета"));
-  expIndList_data2.push_back(v.getWordInd("солнце"));
+  expIndList_data2.push_back(v.getWordInd("РєР°РєРѕРіРѕ"));
+  expIndList_data2.push_back(v.getWordInd("С†РІРµС‚Р°"));
+  expIndList_data2.push_back(v.getWordInd("СЃРѕР»РЅС†Рµ"));
   expIndList_data2.sort();
 
   res = v.parseStrByVocabInds(pSet[2].question);
@@ -173,7 +175,27 @@ void QAUnitTests::StrToIndexTest()
   QVERIFY(indList_data2 == expIndList_data2);
 }
 
+void QAUnitTests::StemmerTest_data()
+{
+  QTest::addColumn<std::string>("word");
+  QTest::addColumn<std::string>("stem");
 
+  QTest::newRow("stemmer_data_1") << std::string("Р±РµРіР°РІС€РёР№") << std::string("Р±РµРі");
+  QTest::newRow("stemmer_data_2") << std::string("Р±РµРіР°СЋС‰РёР№") << std::string("Р±РµРі");
+  QTest::newRow("stemmer_data_3") << std::string("РїРµСЂРµР¶РёРІС€РёР№") << std::string("Р¶РёРІ");
+  QTest::newRow("stemmer_data_4") << std::string("РјС‹РІС€Рё") << std::string("Рј");
+  QTest::newRow("stemmer_data_5") << std::string("РєРѕР»С…РѕР·") << std::string("РєРѕР»С…РѕР·");
+  QTest::newRow("stemmer_data_6") << std::string("РєРѕР»С…РѕР·РЅС‹Р№") << std::string("РєРѕР»С…РѕР·");
+
+}
+
+void QAUnitTests::StemmerTest() 
+{
+  Stemmer s;
+  QFETCH(std::string, word);
+  QFETCH(std::string, stem);
+  QCOMPARE(s.stem(word), stem);
+}
 
 int main(int argc, char *argv[]) \
 {
