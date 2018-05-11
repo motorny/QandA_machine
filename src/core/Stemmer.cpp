@@ -1,4 +1,4 @@
-#include "Stemmer.h"
+﻿#include "Stemmer.h"
 #include <iostream>
 const std::string Stemmer::VOVELS = "аеиоуыэюя";
 const std::string Stemmer::EMPTY = "";

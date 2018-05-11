@@ -1,4 +1,4 @@
-#include <algorithm>
+﻿#include <algorithm>
 
 #include "QApairsSet.h"
 #include "Vocabulary.h"

@@ -1,4 +1,4 @@
-#ifndef __STEMMER_H__
+﻿#ifndef __STEMMER_H__
 #define __STEMMER_H__
 #pragma once
 
