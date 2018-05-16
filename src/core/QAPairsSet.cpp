@@ -14,7 +14,7 @@ void QAPairsSet::addPair(const std::string & question, const std::string & answe
 
 void QAPairsSet::getIndexByVocab(Vocabulary & vocabulary)
 {
-  vector<int> questionInds;
+  //vector<int> questionInds;
 
   // clear all idf fields for correct df (document frequency) calculating
   for (auto &wP : vocabulary) {

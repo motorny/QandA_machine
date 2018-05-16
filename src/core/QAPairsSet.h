@@ -58,10 +58,8 @@ public:
     *  \param q Question string
     *  \param a Answer string
     */
-    QAPair(const std::string &q, const std::string &a)
+    QAPair(const std::string &q, const std::string &a) : question(q), answer(a)
     {
-      question = q;
-      answer = a;
     };
 
     std::string question;//!< Question string
@@ -69,7 +67,7 @@ public:
     std::vector<int> wordIndeces;//!< Array of words, contained in question.
                                  /*!<Indeces corresponds to
                                   *  indeces of words in vocabulary */
-    double invEuqlidSize;//!< Multiplier for euqlid normalization
+    double invEuqlidSize = 0;//!< Multiplier for euqlid normalization
 
     /*! \brief Function to get distance in abstract metric between two sentences 
      *

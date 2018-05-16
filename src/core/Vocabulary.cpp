@@ -101,11 +101,10 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
 int Vocabulary::getWordInd(const string & word) const
 {
   int left = 0, right = vocabulary.size() - 1;
-  int middle;
 
   while (right >= left)
   {
-    middle = left + (right - left) / 2;
+    int middle = left + (right - left) / 2;
 
     if (vocabulary[middle].word == word)
       return middle;

@@ -22,13 +22,12 @@ QAMachineCore::QAMachineCore()
 list<pair<int, double>> QAMachineCore::findBest(vector<int> &queryInd)
 {
   list<pair<int, double>> bestInd{ pair<int, double>(0, pairsQAset[0].getDistFromQuery(vocabulary, queryInd)) };
-  double value = 0.0;
 
   // Iterate through the whole pairsQAset to find best options
   for (size_t pairInd = 1; pairInd < pairsQAset.size(); ++pairInd)
   {
     // cache value of current option
-    value = pairsQAset[pairInd].getDistFromQuery(vocabulary, queryInd);
+    double value = pairsQAset[pairInd].getDistFromQuery(vocabulary, queryInd);
     pair<int, double> curPair(pairInd, value);
 
     // insert into list maintaining sort order (sorted by value)
