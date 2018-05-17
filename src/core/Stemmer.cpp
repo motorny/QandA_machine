@@ -20,6 +20,7 @@ const std::regex Stemmer::DER = std::regex("ость?$");
 const std::regex Stemmer::SUPERLATIVE = std::regex("(ейше|ейш)$");
 std::string Stemmer::stem(std::string word)
 {
+  // make word lowercase
   transform(word.begin(), word.end(), word.begin(), ::tolower);
   replace(word.begin(), word.end(), 'ё', 'е');
   std::string temp = std::regex_replace(word, PERFECTIVE, EMPTY);
@@ -65,6 +66,5 @@ std::string Stemmer::stem(std::string word)
     word = std::regex_replace(word, SUPERLATIVE, EMPTY);
     word = std::regex_replace(word, NN, SN);
   }
-  std::cout << word << std::endl;
   return word;
 }

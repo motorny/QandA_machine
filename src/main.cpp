@@ -37,7 +37,10 @@ int main(int argc, char* argv[])
     {
       core.SaveBaseToFile();
     }
-
+  }
+  else
+  {
+    core.learnFromFile("../dataset/quiz.txt", "../dataset/rejected.txt");
   }
 
 

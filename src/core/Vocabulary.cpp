@@ -51,8 +51,7 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
     while ((end = question.find_first_of(delimetrs, start)) != string::npos)
     {
       word = question.substr(start, end - start);
-      // transform to lowercase
-      transform(word.begin(), word.end(), word.begin(), ::tolower);
+      word = Stemmer::stem(word);
       tempMap[word]++;
       //find next word's start
       start = question.find_first_not_of(delimetrs, end);
@@ -61,8 +60,7 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
     if (start != string::npos)
     {
       word = question.substr(start);
-      // transform to lowercase
-      transform(word.begin(), word.end(), word.begin(), ::tolower);
+      word = Stemmer::stem(word);
       tempMap[word]++;
     }
   }
@@ -162,8 +160,7 @@ std::vector<int> Vocabulary::parseStrByVocabInds(std::string & str) const
   while ((end = str.find_first_of(delimetrs, start)) != string::npos)
   {
     word = str.substr(start, end - start);
-    // make word lowercase
-    transform(word.begin(), word.end(), word.begin(), ::tolower);
+    word = Stemmer::stem(word);
     if ((wordInd = this->getWordInd(word)) != -1)
     {
       // check for wordInd uniquenss
