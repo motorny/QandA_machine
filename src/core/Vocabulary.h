@@ -40,7 +40,7 @@ public:
   * Size of vocabulary is equal to count of different words in it.
   *  \return Size of vocabulary
   */
-  size_t size();
+  size_t size() const;
 
   /*! \class WordPair
    *

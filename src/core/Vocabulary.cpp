@@ -118,7 +118,7 @@ int Vocabulary::getWordInd(const string & word) const
   return -1;
 }
 
-size_t Vocabulary::size()
+size_t Vocabulary::size() const
 {
   return vocabulary.size();
 }

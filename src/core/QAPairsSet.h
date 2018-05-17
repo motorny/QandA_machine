@@ -41,7 +41,7 @@ public:
   * 
   *  \return Count of question/answer pairs in vocabulary
   */
-  size_t size();
+  size_t size() const;
 
   /*! \class QAPair Container for question/answer pair and additional info
   *
@@ -77,7 +77,7 @@ public:
      *  \param queryWordIndeces Indeces of words in compaired sentence
      *  \return value of similarity
      */
-    double getDistFromQuery(Vocabulary &vocabulary, std::vector<int> &queryWordIndeces);
+    double getDistFromQuery(Vocabulary &vocabulary, std::vector<int> &queryWordIndeces) const;
   };
 
   /*! \brief Access containers element by index

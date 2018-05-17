@@ -42,7 +42,7 @@ void QAPairsSet::getIndexByVocab(Vocabulary & vocabulary)
 
 }
 
-size_t QAPairsSet::size()
+size_t QAPairsSet::size() const
 {
   return pairsArr.size();
 }
@@ -62,7 +62,7 @@ std::vector<QAPairsSet::QAPair>::iterator QAPairsSet::end(void)
   return pairsArr.end();
 }
 
-double QAPairsSet::QAPair::getDistFromQuery(Vocabulary &vocabulary, std::vector<int>& queryWordIndeces)
+double QAPairsSet::QAPair::getDistFromQuery(Vocabulary &vocabulary, std::vector<int>& queryWordIndeces) const
 {
   double val = 0.0;
 
