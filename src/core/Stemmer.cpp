@@ -63,7 +63,7 @@ std::string Stemmer::stem(std::string word)
   else
   {
     word = std::regex_replace(word, SUPERLATIVE, EMPTY);
-    word = std::regex_replace(word, NN, EMPTY);
+    word = std::regex_replace(word, NN, SN);
   }
   std::cout << word << std::endl;
   return word;
