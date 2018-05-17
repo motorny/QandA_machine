@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const string Vocabulary::delimetrs = " ,.!?";
+const std::string Vocabulary::delimetrs = " ,.!?\"()«»"; // delimiters
 
 void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const string & rejectedWordsFileName, QAPairsSet & pairsQAset)
 {
@@ -96,6 +96,28 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
   {
     vocabulary.emplace_back(WordPair(w.first, (double)w.second));
   }
+}
+
+void Vocabulary::ReadFromTempFile(const string & dataFileName)
+{
+  ifstream vocabOStream(dataFileName);
+
+  if (!vocabOStream.is_open())
+  {
+    cout << "Cant open " + dataFileName;
+  }
+
+  while (!vocabOStream.eof())
+  {
+    string word;
+    float idf;
+    vocabOStream >> word;
+    vocabOStream >> idf;
+
+    vocabulary.emplace_back(WordPair(word, idf));
+  }
+  vocabOStream.close();
+  cout << "Loaded Vocabulary with size: " + to_string(vocabulary.size()) << endl;
 }
 
 int Vocabulary::getWordInd(const string & word) const

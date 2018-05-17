@@ -87,6 +87,15 @@ public:
    */
   std::vector<int> parseStrByVocabInds(std::string & str) const;
 
+
+  /*!  \briref Load processed vocabulary
+  *
+  *  Load processed vocabulary, which was saved by core on previous app execution
+  *  \param dataFileName Name of file containing vocabulary
+  */
+  void ReadFromTempFile(const std::string & dataFileName);
+
+
   /*! \brief Get an iterator to the beginning of vocabulary
    *
    * Used in range-based loops

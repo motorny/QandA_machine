@@ -1,11 +1,17 @@
 ﻿#include <algorithm>
+#include <fstream>
+#include <iostream>
+
+#include <string>
+#include <sstream>
+#include <iterator>
 
 #include "QApairsSet.h"
 #include "Vocabulary.h"
 
 using namespace std;
 
-const string QAPairsSet::delimetrs = " ,.!?";
+const std::string QAPairsSet::delimetrs = " ,.!?\"()«»"; // delimiters
 
 void QAPairsSet::addPair(const std::string & question, const std::string & answer)
 {
@@ -40,6 +46,37 @@ void QAPairsSet::getIndexByVocab(Vocabulary & vocabulary)
     wP.idf = log((double)pairsArr.size() / wP.idf);
   }
 
+}
+
+void QAPairsSet::ReadFromTempFile(const std::string & dataFileName)
+{
+  ifstream QAPairsOStream(dataFileName);
+
+  if (!QAPairsOStream.is_open())
+  {
+    cout << "Cant open " + dataFileName;
+  }
+
+  string question;
+  string answer;
+  string indecesStr;
+  
+  while (getline(QAPairsOStream, question))
+  {
+    getline(QAPairsOStream, answer);
+    QAPair qap(question, answer);
+     
+    QAPairsOStream >> qap.invEuqlidSize;
+
+    getline(QAPairsOStream, indecesStr);
+    stringstream indeces(indecesStr);
+    copy(istream_iterator<int>(indeces),
+      istream_iterator<int>(), back_inserter(qap.wordIndeces));
+
+    pairsArr.push_back(qap);
+  }
+  QAPairsOStream.close();
+  cout << "Loaded set of pairsQA with size: " + to_string(pairsArr.size()) << endl;
 }
 
 size_t QAPairsSet::size() const

@@ -22,7 +22,24 @@ int main(int argc, char* argv[])
 
   std::cout << "For working with russian language, please, set console font to \"Lucida Console\"" << std::endl;
   std::cout << "Parsing ..." << std::endl;
-  core.learnFromFile("../dataset/quiz.txt", "../dataset/rejected.txt");
+  
+  if (argc > 1)
+  {
+    if (!strcmp(argv[1], "--load"))
+    {
+      core.LoadBaseFromFile();
+    }
+    else
+    {
+      core.learnFromFile("../dataset/quiz.txt", "../dataset/rejected.txt");
+    }
+    if (!strcmp(argv[1], "--save"))
+    {
+      core.SaveBaseToFile();
+    }
+
+  }
+
 
 
   std::cout << "LETS GO\n\n" << std::endl;

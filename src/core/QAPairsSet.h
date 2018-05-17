@@ -37,6 +37,15 @@ public:
    */
   void getIndexByVocab(Vocabulary &vocabulary);
   
+  /*!  \briref Load processed set of pairs QA
+  *
+  *  Load processed set of pairs QA, which was saved by core on previous app execution
+  *  \param dataFileName Name of file containing set of pairs QA
+  */
+  void ReadFromTempFile(const std::string & dataFileName);
+
+
+
   /*! \brief Get current count of pairs
   * 
   *  \return Count of question/answer pairs in vocabulary

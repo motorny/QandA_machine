@@ -11,9 +11,10 @@ using namespace std;
 
 
 
-const std::string QAMachineCore::delimetrs = " ,.!?"; // delimiters
+const std::string QAMachineCore::delimetrs = " ,.!?\"()«»"; // delimiters
 const double threshold = 1e-5; // threshold used in evaluation relevance 
-
+const std::string vocabTempFileName = "vocabTemp.txt";
+const std::string QAPairsTempFileName = "QApairsTemp.txt";
 
 QAMachineCore::QAMachineCore()
 {
@@ -21,6 +22,12 @@ QAMachineCore::QAMachineCore()
 
 list<pair<int, double>> QAMachineCore::findBest(vector<int> &queryInd)
 {
+  if (pairsQAset.size() == 0)
+  {
+    cout << "QAPairsSet is empty!" << endl;
+    list<pair<int, double>> err{ pair<int, double>(0, -1.0) };
+    return err;
+  }
   list<pair<int, double>> bestInd{ pair<int, double>(0, pairsQAset[0].getDistFromQuery(vocabulary, queryInd)) };
 
   // Iterate through the whole pairsQAset to find best options
@@ -45,7 +52,7 @@ list<pair<int, double>> QAMachineCore::findBest(vector<int> &queryInd)
   // If very best one is so low, than any option is not good enough
   if (bestInd.front().second < threshold)
   {
-    list<pair<int, double>> badOptions(maxOptions, pair<int, double>(0, -1));
+    list<pair<int, double>> badOptions(maxOptions, pair<int, double>(0, -1.0));
     return badOptions;
   }
 
@@ -139,6 +146,39 @@ void QAMachineCore::learnFromFile(const string & fileName, const std::string &re
   vocabulary.generateVocabularyFromQAFile(fileName, rejectedWordsFileName, pairsQAset);
   pairsQAset.getIndexByVocab(vocabulary);
   std::cout << "Vocabulary size: " << vocabulary.size() << endl;
+}
+
+void QAMachineCore::SaveBaseToFile() 
+{
+  ofstream vocabOStream(vocabTempFileName);
+  if (!vocabOStream.is_open())
+    cout << "Error writing " + vocabTempFileName << endl;
+  for (auto& word : vocabulary)
+  {
+    vocabOStream << word.word << " " << word.idf << endl;
+  }
+  vocabOStream.close();
+  cout << "Vocabulary saved to " + vocabTempFileName << endl;
+
+  ofstream QAPairsOStream(QAPairsTempFileName);
+  if (!QAPairsOStream.is_open())
+    cout << "Error writing " + QAPairsTempFileName << endl;
+  for (auto& pair : pairsQAset)
+  {
+    QAPairsOStream << pair.question << endl << pair.answer << endl
+      << pair.invEuqlidSize << endl;
+    for (auto i : pair.wordIndeces)
+      QAPairsOStream << i << " ";
+    QAPairsOStream << endl;
+  }
+  QAPairsOStream.close();
+  cout << "QAPairsSet saved to " + QAPairsTempFileName << endl;
+}
+
+void QAMachineCore::LoadBaseFromFile()
+{
+  vocabulary.ReadFromTempFile(vocabTempFileName);
+  pairsQAset.ReadFromTempFile(QAPairsTempFileName);
 }
 
 QAMachineCore::~QAMachineCore()

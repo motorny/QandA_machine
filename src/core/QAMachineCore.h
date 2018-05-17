@@ -94,6 +94,18 @@ public:
   void learnFromFile(const std::string & fileName,
     const std::string &rejectedWordsFileName) override;
 
+  /*! \brief Saving processed base to files
+  *
+  *  Saves Vocabulary and QAPairsSet to temporary files.
+  */
+  void SaveBaseToFile();
+
+  /*! \brief Load processed base from files
+  *
+  *  Loads Vocabulary and QAPairsSet from temporary files.
+  */
+  void LoadBaseFromFile();
+
   /*! \brief Core class destructor
   *
   */
