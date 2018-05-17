@@ -39,16 +39,18 @@ QAUnitTests::QAUnitTests()
 {
 }
 
+
 void QAUnitTests::VocabularyTest_data()
 {
   QTest::addColumn<std::string>("word");
   QTest::addColumn<bool>("result");
 
+  std::cout << Stemmer::stem("переживший");
   QTest::newRow("vocab_data_1") << std::string("привет") << true;
   QTest::newRow("vocab_data_2") << std::string("вопрос") << true;
   QTest::newRow("vocab_data_3") << std::string("компьютер") << true;
-  QTest::newRow("vocab_data_4") << std::string("обработка") << true;
-  QTest::newRow("vocab_data_5") << std::string("программирование") << true;
+  QTest::newRow("vocab_data_4") << std::string("обработк") << true;
+  QTest::newRow("vocab_data_5") << std::string("программирован") << true;
   QTest::newRow("vocab_data_6") << std::string("часы") << false;
   QTest::newRow("vocab_data_7") << std::string("рак") << false;
   QTest::newRow("vocab_data_8") << std::string("стул") << false;
@@ -72,9 +74,9 @@ void QAUnitTests::VocabularyRejectionTest_data()
 
   QTest::newRow("vocab_rej_data_1") << std::string("привет") << true;
   QTest::newRow("vocab_rej_data_2") << std::string("компьютер") << true;
-  QTest::newRow("vocab_rej_data_3") << std::string("обработка") << true;
+  QTest::newRow("vocab_rej_data_3") << std::string("обработк") << true;
 
-  QTest::newRow("vocab_rej_data_4") << std::string("программирование") << false;
+  QTest::newRow("vocab_rej_data_4") << std::string("программирован") << true;
   QTest::newRow("vocab_rej_data_5") << std::string("вопрос") << false;
   QTest::newRow("vocab_rej_data_6") << std::string("кот") << false;
 
@@ -119,8 +121,8 @@ void QAUnitTests::IdfTest_data()
   QTest::addColumn<std::string>("word");
   QTest::addColumn<double>("expIdf");
 
-  QTest::newRow("idf_data_1") << std::string("Кто") << (log(4.0 / 2.0));
-  QTest::newRow("idf_data_2") << std::string("выиграл") << (log(4.0 / 1.0));
+  QTest::newRow("idf_data_1") << std::string("Кт") << (log(4.0 / 2.0));
+  QTest::newRow("idf_data_2") << std::string("выигра") << (log(4.0 / 1.0));
   QTest::newRow("idf_data_3") << std::string("2018") << (log(4.0 / 1.0));
   QTest::newRow("idf_data_4") << std::string("в") << (log(4.0 / 1.0));
 }
@@ -150,9 +152,9 @@ void QAUnitTests::StrToIndexTest()
   pSet.getIndexByVocab(v);
 
   std::list<int> expIndList_data1;  
-  expIndList_data1.push_back(v.getWordInd("кто"));
-  expIndList_data1.push_back(v.getWordInd("выиграл"));
-  expIndList_data1.push_back(v.getWordInd("олимпиаду"));
+  expIndList_data1.push_back(v.getWordInd("кт"));
+  expIndList_data1.push_back(v.getWordInd("выигра"));
+  expIndList_data1.push_back(v.getWordInd("олимпиад"));
   expIndList_data1.push_back(v.getWordInd("2018"));
   expIndList_data1.sort();
 
@@ -163,9 +165,9 @@ void QAUnitTests::StrToIndexTest()
   QVERIFY(indList_data1 == expIndList_data1);
 
   std::list<int> expIndList_data2;
-  expIndList_data2.push_back(v.getWordInd("какого"));
-  expIndList_data2.push_back(v.getWordInd("цвета"));
-  expIndList_data2.push_back(v.getWordInd("солнце"));
+  expIndList_data2.push_back(v.getWordInd("как"));
+  expIndList_data2.push_back(v.getWordInd("цвет"));
+  expIndList_data2.push_back(v.getWordInd("солнц"));
   expIndList_data2.sort();
 
   res = v.parseStrByVocabInds(pSet[2].question);
@@ -180,21 +182,21 @@ void QAUnitTests::StemmerTest_data()
   QTest::addColumn<std::string>("word");
   QTest::addColumn<std::string>("stem");
 
-  QTest::newRow("stemmer_data_1") << std::string("бегавший") << std::string("бег");
-  QTest::newRow("stemmer_data_2") << std::string("бегающий") << std::string("бег");
-  QTest::newRow("stemmer_data_3") << std::string("переживший") << std::string("жив");
+  QTest::newRow("stemmer_data_1") << std::string("бегавший") << std::string("бега");
+  QTest::newRow("stemmer_data_2") << std::string("бегающий") << std::string("бега");
+  QTest::newRow("stemmer_data_3") << std::string("переживший") << std::string("переж");
   QTest::newRow("stemmer_data_4") << std::string("мывши") << std::string("м");
   QTest::newRow("stemmer_data_5") << std::string("колхоз") << std::string("колхоз");
-  QTest::newRow("stemmer_data_6") << std::string("колхозный") << std::string("колхоз");
+  QTest::newRow("stemmer_data_6") << std::string("колхозный") << std::string("колхозн");
 
 }
 
 void QAUnitTests::StemmerTest() 
 {
-  Stemmer s;
+  
   QFETCH(std::string, word);
   QFETCH(std::string, stem);
-  QCOMPARE(s.stem(word), stem);
+  QCOMPARE(Stemmer::stem(word), stem);
 }
 
 int main(int argc, char *argv[]) \
