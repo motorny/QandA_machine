@@ -1,4 +1,10 @@
-﻿#include <QString>
+﻿/*! \file
+*  \brief QTests
+*
+*  This file contains tests of the project
+*  This description is under reconstruction
+*/
+#include <QString>
 #include <QtTest>
 
 #include <string>
@@ -189,12 +195,15 @@ void QAUnitTests::StemmerTest_data()
   QTest::addColumn<std::string>("word");
   QTest::addColumn<std::string>("stem");
 
-  QTest::newRow("stemmer_data_1") << std::string("бегавший") << std::string("бега");
-  QTest::newRow("stemmer_data_2") << std::string("бегающий") << std::string("бега");
-  QTest::newRow("stemmer_data_3") << std::string("переживший") << std::string("переж");
+  QTest::newRow("stemmer_data_1") << std::string("важная") << std::string("важн");
+  QTest::newRow("stemmer_data_2") << std::string("важничал") << std::string("важнича");
+  QTest::newRow("stemmer_data_3") << std::string("валился") << std::string("вал");
   QTest::newRow("stemmer_data_4") << std::string("мывши") << std::string("м");
   QTest::newRow("stemmer_data_5") << std::string("колхоз") << std::string("колхоз");
   QTest::newRow("stemmer_data_6") << std::string("колхозный") << std::string("колхозн");
+  QTest::newRow("stemmer_data_7") << std::string("в") << std::string("в");
+  QTest::newRow("stemmer_data_8") << std::string("важнейшим") << std::string("важн");
+  QTest::newRow("stemmer_data_9") << std::string("вальсе") << std::string("вальс");
 
 }
 
