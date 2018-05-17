@@ -6,6 +6,7 @@
 #include <vector>
 #include <Windows.h>
 #include <iostream>
+#include <fstream>
 
 #include "QAMachineCore.h"
 
@@ -18,6 +19,7 @@ class QAUnitTests : public QObject
 public:
   QAUnitTests();
 
+  std::string relPath = "";
   private Q_SLOTS:
   void VocabularyTest_data();
   void VocabularyTest();
@@ -37,6 +39,11 @@ public:
 
 QAUnitTests::QAUnitTests()
 {
+  std::ifstream is("../../dataset/unit_test/vocabTest.txt");
+  if (!is.is_open())
+    relPath = std::string("../");
+  else
+    is.close();
 }
 
 
@@ -45,7 +52,7 @@ void QAUnitTests::VocabularyTest_data()
   QTest::addColumn<std::string>("word");
   QTest::addColumn<bool>("result");
 
-  std::cout << Stemmer::stem("переживший");
+  //std::cout << Stemmer::stem("переживший");
   QTest::newRow("vocab_data_1") << std::string("привет") << true;
   QTest::newRow("vocab_data_2") << std::string("вопрос") << true;
   QTest::newRow("vocab_data_3") << std::string("компьютер") << true;
@@ -61,7 +68,7 @@ void QAUnitTests::VocabularyTest()
 {
   Vocabulary v;
   QAPairsSet pSet;
-  v.generateVocabularyFromQAFile("../../dataset/unit_test/vocabTest.txt", "../../dataset/unit_test/vocabTestRejected_empty.txt", pSet);
+  v.generateVocabularyFromQAFile(relPath + "../../dataset/unit_test/vocabTest.txt", relPath + "../../dataset/unit_test/vocabTestRejected_empty.txt", pSet);
   QFETCH(std::string, word);
   QFETCH(bool, result);
   QCOMPARE((v.getWordInd(word) != -1), result);
@@ -88,7 +95,7 @@ void QAUnitTests::VocabularyRejectionTest()
 {
   Vocabulary v;
   QAPairsSet pSet;
-  v.generateVocabularyFromQAFile("../../dataset/unit_test/vocabTest.txt", "../../dataset/unit_test/vocabRejectionTest.txt", pSet);
+  v.generateVocabularyFromQAFile(relPath + "../../dataset/unit_test/vocabTest.txt", relPath + "../../dataset/unit_test/vocabRejectionTest.txt", pSet);
   QFETCH(std::string, word);
   QFETCH(bool, result);
   QCOMPARE((v.getWordInd(word) != -1), result);
@@ -109,7 +116,7 @@ void QAUnitTests::SimilarQuestionTest()
 {
   QAMachineCore core;
 
-  core.learnFromFile("../../dataset/unit_test/QA_set.txt", "../../dataset/unit_test/vocabTestRejected_empty.txt");
+  core.learnFromFile(relPath + "../../dataset/unit_test/QA_set.txt", relPath + "../../dataset/unit_test/vocabTestRejected_empty.txt");
   QFETCH(std::string, question);
   QFETCH(std::string, result);
   core.askQuestion(question);
@@ -131,7 +138,7 @@ void QAUnitTests::IdfTest()
 {
   Vocabulary v;
   QAPairsSet pSet;
-  v.generateVocabularyFromQAFile("../../dataset/unit_test/QA_Set.txt", "../../dataset/unit_test/vocabTestRejected_empty.txt", pSet);
+  v.generateVocabularyFromQAFile(relPath + "../../dataset/unit_test/QA_Set.txt", relPath + "../../dataset/unit_test/vocabTestRejected_empty.txt", pSet);
   pSet.getIndexByVocab(v);
   QFETCH(std::string, word);
   QFETCH(double, expIdf);
@@ -148,7 +155,7 @@ void QAUnitTests::StrToIndexTest()
 {
   Vocabulary v;
   QAPairsSet pSet;
-  v.generateVocabularyFromQAFile("../../dataset/unit_test/QA_Set.txt", "../../dataset/unit_test/vocabTestRejected_empty.txt", pSet);
+  v.generateVocabularyFromQAFile(relPath + "../../dataset/unit_test/QA_Set.txt", relPath + "../../dataset/unit_test/vocabTestRejected_empty.txt", pSet);
   pSet.getIndexByVocab(v);
 
   std::list<int> expIndList_data1;  
