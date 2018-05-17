@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
+#include <sstream>
 #include "Vocabulary.h"
 
 using namespace std;
@@ -104,16 +105,26 @@ void Vocabulary::ReadFromTempFile(const string & dataFileName)
   {
     cout << "Cant open " + dataFileName;
   }
-
-  while (!vocabOStream.eof())
+  string str;
+  while (getline(vocabOStream, str))
   {
     string word;
-    float idf;
-    vocabOStream >> word;
-    vocabOStream >> idf;
-
+    double idf;
+    istringstream ss(str);
+    ss >> word;
+    ss >> idf;
+    //cout << word << "--------" << idf << endl;
     vocabulary.emplace_back(WordPair(word, idf));
   }
+
+  /*while (!vocabOStream.eof())
+  {
+    
+    vocabOStream >> word;
+    vocabOStream >> idf;
+    cout << word << "--------" << idf << endl;
+    vocabulary.emplace_back(WordPair(word, idf));
+  }*/
   vocabOStream.close();
   cout << "Loaded Vocabulary with size: " + to_string(vocabulary.size()) << endl;
 }

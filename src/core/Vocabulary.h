@@ -88,7 +88,7 @@ public:
   std::vector<int> parseStrByVocabInds(std::string & str) const;
 
 
-  /*!  \briref Load processed vocabulary
+  /*!  \brief Load processed vocabulary
   *
   *  Load processed vocabulary, which was saved by core on previous app execution
   *  \param dataFileName Name of file containing vocabulary

@@ -59,21 +59,28 @@ void QAPairsSet::ReadFromTempFile(const std::string & dataFileName)
 
   string question;
   string answer;
+  string euSizeStr;
   string indecesStr;
   
+
   while (getline(QAPairsOStream, question))
   {
     getline(QAPairsOStream, answer);
-    QAPair qap(question, answer);
+    pairsArr.emplace_back(question, answer);
      
-    QAPairsOStream >> qap.invEuqlidSize;
+    
+    getline(QAPairsOStream, euSizeStr);
+    istringstream ss(euSizeStr);
+    ss >> pairsArr.back().invEuqlidSize;
 
     getline(QAPairsOStream, indecesStr);
     stringstream indeces(indecesStr);
     copy(istream_iterator<int>(indeces),
-      istream_iterator<int>(), back_inserter(qap.wordIndeces));
+      istream_iterator<int>(), back_inserter(pairsArr.back().wordIndeces));
 
-    pairsArr.push_back(qap);
+    //cout << pairsArr.back().question << endl << pairsArr.back().answer << endl << pairsArr.back().invEuqlidSize << endl;
+
+    //pairsArr.push_back(qap);
   }
   QAPairsOStream.close();
   cout << "Loaded set of pairsQA with size: " + to_string(pairsArr.size()) << endl;
