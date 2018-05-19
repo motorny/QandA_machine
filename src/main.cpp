@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      core.learnFromFile("../dataset/quiz.txt", "../dataset/rejected.txt");
+      core.learnFromFile("../dataset/large_quiz.txt", "../dataset/rejected.txt");
     }
     if (!strcmp(argv[1], "--save"))
     {
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
   }
   else
   {
-    core.learnFromFile("../dataset/quiz.txt", "../dataset/rejected.txt");
+    core.learnFromFile("../dataset/large_quiz.txt", "../dataset/rejected.txt");
   }
 
 
