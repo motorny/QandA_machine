@@ -11,7 +11,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 set(SOURCE tst_qaunittests.cpp)
-set(HEADER )
+set(HEADER tst_qaunittests.h)
 
 set(SOURCE_CORE QAMachineCore.cpp QAPairsSet.cpp Stemmer.cpp Vocabulary.cpp)
 set(HEADER_CORE QAMachineCore.h QAPairsSet.h Stemmer.h Vocabulary.h)
@@ -22,7 +22,7 @@ find_package(Qt5Test REQUIRED)
 
 add_executable(test 
 	${SOURCE}
-	${HEADERS}
+	${HEADER}
 	../src/core/$<JOIN:${SOURCE_CORE}, ../src/core/>
 	../src/core/$<JOIN:${HEADER_CORE}, ../src/core/>
 )
