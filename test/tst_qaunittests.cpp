@@ -1,47 +1,9 @@
-﻿/*! \file
-*  \brief QTests
-*
-*  This file contains tests of the project
-*  This description is under reconstruction
-*/
-#include <QString>
-#include <QtTest>
-
+﻿#include "tst_qaunittests.h"
+#include <Windows.h>
 #include <string>
 #include <list>
 #include <vector>
-#include <Windows.h>
-#include <iostream>
 #include <fstream>
-
-#include "QAMachineCore.h"
-
-Q_DECLARE_METATYPE(std::string);
-
-class QAUnitTests : public QObject
-{
-  Q_OBJECT
-
-public:
-  QAUnitTests();
-
-  std::string relPath = "";
-  private Q_SLOTS:
-  void VocabularyTest_data();
-  void VocabularyTest();
-  void VocabularyRejectionTest_data();
-  void VocabularyRejectionTest();
-  void SimilarQuestionTest_data();
-  void SimilarQuestionTest();
-  void IdfTest_data();
-  void IdfTest();
-  void StrToIndexTest_data();
-  void StrToIndexTest();
-  void StemmerTest_data();
-  void StemmerTest();
-};
-
-
 
 QAUnitTests::QAUnitTests()
 {
@@ -58,7 +20,6 @@ void QAUnitTests::VocabularyTest_data()
   QTest::addColumn<std::string>("word");
   QTest::addColumn<bool>("result");
 
-  //std::cout << Stemmer::stem("переживший");
   QTest::newRow("vocab_data_1") << std::string("привет") << true;
   QTest::newRow("vocab_data_2") << std::string("вопрос") << true;
   QTest::newRow("vocab_data_3") << std::string("компьютер") << true;
@@ -224,4 +185,3 @@ int main(int argc, char *argv[]) \
   QTest::setMainSourcePath(__FILE__, ".");
   return QTest::qExec(&tc, argc, argv);
 }
-#include "tst_qaunittests.moc"
