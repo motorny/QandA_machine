@@ -148,7 +148,7 @@ void QAMachineCore::learnFromFile(const string & fileName, const std::string &re
   std::cout << "Vocabulary size: " << vocabulary.size() << endl;
 }
 
-void QAMachineCore::SaveBaseToFile() 
+void QAMachineCore::saveBaseToFile() 
 {
   ofstream vocabOStream(vocabTempFileName);
   if (!vocabOStream.is_open())
@@ -175,7 +175,7 @@ void QAMachineCore::SaveBaseToFile()
   cout << "QAPairsSet saved to " + QAPairsTempFileName << endl;
 }
 
-void QAMachineCore::LoadBaseFromFile()
+void QAMachineCore::loadBaseFromFile()
 {
   vocabulary.ReadFromTempFile(vocabTempFileName);
   pairsQAset.ReadFromTempFile(QAPairsTempFileName);

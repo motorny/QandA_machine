@@ -98,13 +98,13 @@ public:
   *
   *  Saves Vocabulary and QAPairsSet to temporary files.
   */
-  void SaveBaseToFile();
+  void saveBaseToFile();
 
   /*! \brief Load processed base from files
   *
   *  Loads Vocabulary and QAPairsSet from temporary files.
   */
-  void LoadBaseFromFile();
+  void loadBaseFromFile();
 
   /*! \brief Core class destructor
   *

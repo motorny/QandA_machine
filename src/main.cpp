@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
   {
     if (!strcmp(argv[1], "--load"))
     {
-      core.LoadBaseFromFile();
+      core.loadBaseFromFile();
     }
     else
     {
@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
     }
     if (!strcmp(argv[1], "--save"))
     {
-      core.SaveBaseToFile();
+      core.saveBaseToFile();
     }
   }
   else
