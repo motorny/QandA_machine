@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\test\tst_qaunittests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\QAMachineCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\QAPairsSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\Stemmer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\Vocabulary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\mocs_compilation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\test\tst_qaunittests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\QAMachineCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\QAPairsSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\Stemmer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\Vocabulary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{F34195AB-1C2E-3223-8361-1A9335593654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{56727BE8-729B-3A74-8315-67D5FAF75F35}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
