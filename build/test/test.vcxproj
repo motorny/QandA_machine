@@ -1,396 +1,190 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="MinSizeRel|Win32">
-      <Configuration>MinSizeRel</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="RelWithDebInfo|Win32">
-      <Configuration>RelWithDebInfo</Configuration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F94B33AB-3989-3FDB-B8CE-8EF912C228A9}</ProjectGuid>
-    <Keyword>Win32Proj</Keyword>
-    <Platform>Win32</Platform>
-    <ProjectName>test</ProjectName>
-    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+    <ProjectGuid>{E2203209-9506-393F-B7F1-5DBEE9A735AB}</ProjectGuid>
+    <RootNamespace>tst_qaunittests</RootNamespace>
+    <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <PlatformToolSet>v140</PlatformToolSet>
+    <OutputDirectory>release\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
     <ConfigurationType>Application</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <IntermediateDirectory>release\</IntermediateDirectory>
+    <PrimaryOutput>tst_qaunittests</PrimaryOutput>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <PlatformToolSet>v140</PlatformToolSet>
+    <OutputDirectory>debug\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
     <ConfigurationType>Application</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <IntermediateDirectory>debug\</IntermediateDirectory>
+    <PrimaryOutput>tst_qaunittests</PrimaryOutput>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
+  <PropertyGroup Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">
+    <QtMsBuild>$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Nikita\Coding\GitHub\QandA_machine\build\test\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">test.dir\Debug\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">test</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Nikita\Coding\GitHub\QandA_machine\build\test\Release\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">test.dir\Release\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">test</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">tst_qaunittests</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\Nikita\Coding\GitHub\QandA_machine\build\test\MinSizeRel\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">test.dir\MinSizeRel\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">test</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
-    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\Nikita\Coding\GitHub\QandA_machine\build\test\RelWithDebInfo\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">test.dir\RelWithDebInfo\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">test</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
-    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">tst_qaunittests</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_Debug;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <CompileAs>CompileAsCpp</CompileAs>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
-      <Optimization>Disabled</Optimization>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;QT_CORE_LIB;QT_TESTLIB_LIB;QT_TESTCASE_BUILDDIR="E:/Nikita/Coding/GitHub/QandA_machine/build";CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;QT_CORE_LIB;QT_TESTLIB_LIB;QT_TESTCASE_BUILDDIR=\"E:/Nikita/Coding/GitHub/QandA_machine/build\";CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_Debug;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-    <Midl>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_Debug;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
-      <HeaderFileName>%(Filename).h</HeaderFileName>
-      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
-      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
-      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
-    </Midl>
-    <PreBuildEvent>
-      <Message>Automatic MOC for target test</Message>
-      <Command>setlocal
-cd E:\Nikita\Coding\GitHub\QandA_machine\build\test
-if %errorlevel% neq 0 goto :cmEnd
-E:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -E cmake_autogen E:/Nikita/Coding/GitHub/QandA_machine/build/test/CMakeFiles/test_autogen.dir/AutogenInfo.cmake Debug
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-    </PreBuildEvent>
-    <Link>
-      <AdditionalDependencies>E:\Nikita\Coding\Qt\5.7\msvc2015\lib\Qt5Testd.lib;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\Qt5Cored.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
-      <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/Nikita/Coding/GitHub/QandA_machine/build/test/Debug/test.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/Nikita/Coding/GitHub/QandA_machine/build/test/Debug/test.pdb</ProgramDataBaseFile>
-      <SubSystem>Console</SubSystem>
-    </Link>
-    <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_Release;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AssemblerListingLocation>Release/</AssemblerListingLocation>
-      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\core;.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtTest;$(QTDIR)\include\QtCore;release;$(QTDIR)\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR="./";QT_NO_DEBUG;QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=".";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_CORE_LIB;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_TESTCASE_BUILDDIR="E:/Nikita/Coding/GitHub/QandA_machine/build";CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat>
-      </DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_CORE_LIB;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_TESTCASE_BUILDDIR=\"E:/Nikita/Coding/GitHub/QandA_machine/build\";CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_Release;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-    <Midl>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_Release;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
-      <HeaderFileName>%(Filename).h</HeaderFileName>
-      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
-      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
-      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
-    </Midl>
-    <PreBuildEvent>
-      <Message>Automatic MOC for target test</Message>
-      <Command>setlocal
-cd E:\Nikita\Coding\GitHub\QandA_machine\build\test
-if %errorlevel% neq 0 goto :cmEnd
-E:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -E cmake_autogen E:/Nikita/Coding/GitHub/QandA_machine/build/test/CMakeFiles/test_autogen.dir/AutogenInfo.cmake Release
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-    </PreBuildEvent>
     <Link>
-      <AdditionalDependencies>E:\Nikita\Coding\Qt\5.7\msvc2015\lib\Qt5Test.lib;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\Qt5Core.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/Nikita/Coding/GitHub/QandA_machine/build/test/Release/test.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/Nikita/Coding/GitHub/QandA_machine/build/test/Release/test.pdb</ProgramDataBaseFile>
+      <AdditionalDependencies>$(QTDIR)\lib\Qt5Test.lib;$(QTDIR)\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <LinkIncremental>false</LinkIncremental>
+      <OutputFile>$(OutDir)\tst_qaunittests.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
     </Link>
-    <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
-    <ClCompile>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_MinSizeRel;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
-      <CompileAs>CompileAsCpp</CompileAs>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <Optimization>MinSpace</Optimization>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_CORE_LIB;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_TESTCASE_BUILDDIR="E:/Nikita/Coding/GitHub/QandA_machine/build";CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat>
-      </DebugInformationFormat>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_CORE_LIB;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_TESTCASE_BUILDDIR=\"E:/Nikita/Coding/GitHub/QandA_machine/build\";CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_MinSizeRel;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_MinSizeRel;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
-      <HeaderFileName>%(Filename).h</HeaderFileName>
-      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
-      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
-      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
     </Midl>
-    <PreBuildEvent>
-      <Message>Automatic MOC for target test</Message>
-      <Command>setlocal
-cd E:\Nikita\Coding\GitHub\QandA_machine\build\test
-if %errorlevel% neq 0 goto :cmEnd
-E:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -E cmake_autogen E:/Nikita/Coding/GitHub/QandA_machine/build/test/CMakeFiles/test_autogen.dir/AutogenInfo.cmake MinSizeRel
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-    </PreBuildEvent>
-    <Link>
-      <AdditionalDependencies>E:\Nikita\Coding\Qt\5.7\msvc2015\lib\Qt5Test.lib;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\Qt5Core.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/Nikita/Coding/GitHub/QandA_machine/build/test/MinSizeRel/test.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/Nikita/Coding/GitHub/QandA_machine/build/test/MinSizeRel/test.pdb</ProgramDataBaseFile>
-      <SubSystem>Console</SubSystem>
-    </Link>
-    <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR=\"./\";QT_NO_DEBUG;QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=".";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <QtMoc>
+      <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <IncludePath>$(ProjectDir)..\..\src\core;.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtTest;$(QTDIR)\include\QtCore;release;$(QTDIR)\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</IncludePath>
+      <Define>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR=./;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=.;NDEBUG</Define>
+    </QtMoc>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_RelWithDebInfo;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
-      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\core;.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtTest;$(QTDIR)\include\QtCore;debug;$(QTDIR)\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <Optimization>MaxSpeed</Optimization>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_CORE_LIB;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_TESTCASE_BUILDDIR="E:/Nikita/Coding/GitHub/QandA_machine/build";CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR="./";QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=".";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_CORE_LIB;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_TESTCASE_BUILDDIR=\"E:/Nikita/Coding/GitHub/QandA_machine/build\";CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_RelWithDebInfo;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-    <Midl>
-      <AdditionalIncludeDirectories>E:\Nikita\Coding\GitHub\QandA_machine\build\test;E:\Nikita\Coding\GitHub\QandA_machine\test;E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\include_RelWithDebInfo;E:\Nikita\Coding\GitHub\QandA_machine\src\core;E:\Nikita\Coding\GitHub\QandA_machine\test\..\src\core;E:\Nikita\Coding\Qt\5.7\msvc2015\include;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtCore;E:\Nikita\Coding\Qt\5.7\msvc2015\.\mkspecs\win32-msvc2015;E:\Nikita\Coding\Qt\5.7\msvc2015\include\QtTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
-      <HeaderFileName>%(Filename).h</HeaderFileName>
-      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
-      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
-      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
-    </Midl>
-    <PreBuildEvent>
-      <Message>Automatic MOC for target test</Message>
-      <Command>setlocal
-cd E:\Nikita\Coding\GitHub\QandA_machine\build\test
-if %errorlevel% neq 0 goto :cmEnd
-E:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -E cmake_autogen E:/Nikita/Coding/GitHub/QandA_machine/build/test/CMakeFiles/test_autogen.dir/AutogenInfo.cmake RelWithDebInfo
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-    </PreBuildEvent>
     <Link>
-      <AdditionalDependencies>E:\Nikita\Coding\Qt\5.7\msvc2015\lib\Qt5Test.lib;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\Qt5Core.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
-      <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/Nikita/Coding/GitHub/QandA_machine/build/test/RelWithDebInfo/test.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/Nikita/Coding/GitHub/QandA_machine/build/test/RelWithDebInfo/test.pdb</ProgramDataBaseFile>
+      <AdditionalDependencies>$(QTDIR)\lib\Qt5Testd.lib;$(QTDIR)\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <OutputFile>$(OutDir)\tst_qaunittests.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
     </Link>
-    <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR=\"./\";QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=".";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <QtMoc>
+      <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <IncludePath>$(ProjectDir)..\..\src\core;.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtTest;$(QTDIR)\include\QtCore;debug;$(QTDIR)\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</IncludePath>
+      <Define>_CONSOLE;UNICODE;WIN32;QT_DEPRECATED_WARNINGS;SRCDIR=./;QT_TESTLIB_LIB;QT_CORE_LIB;QT_TESTCASE_BUILDDIR=.</Define>
+    </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule E:/Nikita/Coding/GitHub/QandA_machine/test/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/Nikita/Coding/GitHub/QandA_machine -BE:/Nikita/Coding/GitHub/QandA_machine/build --check-stamp-file E:/Nikita/Coding/GitHub/QandA_machine/build/test/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:/Nikita/Coding/GitHub/QandA_machine/test/CMakeLists.txt;E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.11\Modules\CMakeParseArguments.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfigVersion.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfig.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfigExtras.cmake;E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Nikita\Coding\GitHub\QandA_machine\build\test\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule E:/Nikita/Coding/GitHub/QandA_machine/test/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/Nikita/Coding/GitHub/QandA_machine -BE:/Nikita/Coding/GitHub/QandA_machine/build --check-stamp-file E:/Nikita/Coding/GitHub/QandA_machine/build/test/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:/Nikita/Coding/GitHub/QandA_machine/test/CMakeLists.txt;E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.11\Modules\CMakeParseArguments.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfigVersion.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfig.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfigExtras.cmake;E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Nikita\Coding\GitHub\QandA_machine\build\test\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule E:/Nikita/Coding/GitHub/QandA_machine/test/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/Nikita/Coding/GitHub/QandA_machine -BE:/Nikita/Coding/GitHub/QandA_machine/build --check-stamp-file E:/Nikita/Coding/GitHub/QandA_machine/build/test/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:/Nikita/Coding/GitHub/QandA_machine/test/CMakeLists.txt;E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.11\Modules\CMakeParseArguments.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfigVersion.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfig.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfigExtras.cmake;E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\Nikita\Coding\GitHub\QandA_machine\build\test\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule E:/Nikita/Coding/GitHub/QandA_machine/test/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/Nikita/Coding/GitHub/QandA_machine -BE:/Nikita/Coding/GitHub/QandA_machine/build --check-stamp-file E:/Nikita/Coding/GitHub/QandA_machine/build/test/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:/Nikita/Coding/GitHub/QandA_machine/test/CMakeLists.txt;E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.11\Modules\CMakeParseArguments.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfigVersion.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfig.cmake;E:\Nikita\Coding\Qt\5.7\msvc2015\lib\cmake\Qt5Test\Qt5TestConfigExtras.cmake;E:\Nikita\Coding\GitHub\QandA_machine\test\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\Nikita\Coding\GitHub\QandA_machine\build\test\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
-    </CustomBuild>
+    <ClCompile Include="..\..\src\core\QAMachineCore.cpp" />
+    <ClCompile Include="..\..\src\core\QAPairsSet.cpp" />
+    <ClCompile Include="..\..\src\core\Stemmer.cpp" />
+    <ClCompile Include="..\..\src\core\Vocabulary.cpp" />
+    <ClCompile Include="..\..\test\tst_qaunittests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\test\tst_qaunittests.cpp" />
-    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\test\tst_qaunittests.h" />
-    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\QAMachineCore.cpp" />
-    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\QAPairsSet.cpp" />
-    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\Stemmer.cpp" />
-    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\Vocabulary.cpp" />
-    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\QAMachineCore.h" />
-    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\QAPairsSet.h" />
-    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\Stemmer.h" />
-    <ClInclude Include="E:\Nikita\Coding\GitHub\QandA_machine\src\core\Vocabulary.h" />
-    <ClCompile Include="E:\Nikita\Coding\GitHub\QandA_machine\build\test\test_autogen\mocs_compilation.cpp" />
+    <QtMoc Include="..\..\test\tst_qaunittests.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\Nikita\Coding\GitHub\QandA_machine\build\ZERO_CHECK.vcxproj">
-      <Project>{EFD54AB3-E679-39F7-9E9D-7D1DF621CD59}</Project>
-      <Name>ZERO_CHECK</Name>
-    </ProjectReference>
+    <ClInclude Include="..\..\src\core\IMachineCore.h" />
+    <ClInclude Include="..\..\src\core\QAMachineCore.h" />
+    <ClInclude Include="..\..\src\core\QAPairsSet.h" />
+    <ClInclude Include="..\..\src\core\Stemmer.h" />
+    <ClInclude Include="..\..\src\core\Vocabulary.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
   </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" Qt5Version_x0020_Win32="5.7.1" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

@@ -21,7 +21,7 @@ Q_DECLARE_METATYPE(std::string);
 */
 class QAUnitTests : public QObject
 {
-  Q_OBJECT
+ Q_OBJECT
 
 public:
   QAUnitTests();
@@ -79,5 +79,3 @@ public:
   */
   void StemmerTest();
 };
-
-#include "tst_qaunittests.moc"

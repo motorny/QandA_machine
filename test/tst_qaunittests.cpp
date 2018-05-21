@@ -176,7 +176,9 @@ void QAUnitTests::StemmerTest()
   QCOMPARE(Stemmer::stem(word), stem);
 }
 
-int main(int argc, char *argv[]) \
+
+
+int main(int argc, char *argv[]) 
 {
   setlocale(LC_ALL, "Russian");
   SetConsoleCP(1251);
@@ -185,3 +187,4 @@ int main(int argc, char *argv[]) \
   QTest::setMainSourcePath(__FILE__, ".");
   return QTest::qExec(&tc, argc, argv);
 }
+
