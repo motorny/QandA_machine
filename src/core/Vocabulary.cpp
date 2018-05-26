@@ -1,4 +1,4 @@
-ï»¿#include <map>
+#include <map>
 #include <fstream>
 #include <iostream>
 #include <algorithm>
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-const std::string Vocabulary::delimetrs = " ,.!?\"()Â«Â»"; // delimiters
+const std::string Vocabulary::delimetrs = " ,.!?\"()«»"; // delimiters
 
 void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const string & rejectedWordsFileName, QAPairsSet & pairsQAset)
 {

@@ -1,4 +1,4 @@
-ï»¿#include <fstream>
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <sstream>
@@ -11,7 +11,7 @@ using namespace std;
 
 
 
-const std::string QAMachineCore::delimetrs = " ,.!?\"()Â«Â»"; // delimiters
+const std::string QAMachineCore::delimetrs = " ,.!?\"()«»"; // delimiters
 const double threshold = 1e-5; // threshold used in evaluation relevance 
 const std::string vocabTempFileName = "vocabTemp.txt";
 const std::string QAPairsTempFileName = "QApairsTemp.txt";

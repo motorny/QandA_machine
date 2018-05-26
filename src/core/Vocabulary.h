@@ -1,4 +1,4 @@
-﻿#ifndef __VOCABULARY_H__
+#ifndef __VOCABULARY_H__
 #define __VOCABULARY_H__
 #pragma once
 

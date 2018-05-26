@@ -1,4 +1,4 @@
-﻿/*! \file 
+/*! \file 
  *  \brief QAMachineCore declarations
  *
  *  This file contains declarations of methods

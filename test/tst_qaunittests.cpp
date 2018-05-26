@@ -19,6 +19,7 @@ QAUnitTests::QAUnitTests()
   {
     dataStrArr.push_back(str);
   }
+  dataStringsIS.close();
 }
 
 

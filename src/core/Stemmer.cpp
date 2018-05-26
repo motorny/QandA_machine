@@ -1,28 +1,74 @@
-﻿#include "Stemmer.h"
+#include "Stemmer.h"
 #include <iostream>
-const std::string Stemmer::VOVELS = "аеиоуыэюя";
-const std::string Stemmer::EMPTY = "";
-const std::string Stemmer::S1 = "$1";
-const std::string Stemmer::S13 = "$1$3";
-const std::string Stemmer::SN = "н";
+#include <fstream>
 
-const std::regex Stemmer::PERFECTIVE = std::regex("(ив|ивши|ившись|ыв|ывши|ывшись|вши|вшись)$");
-const std::regex Stemmer::REFLEXIVE = std::regex("(ся|сь)$");
-const std::regex Stemmer::ADJECTIVE = std::regex("(ее|ие|ые|ое|ими|ыми|ей|ий|ый|ой|ем|им|ым|ом|его|ого|ему|ому|их|ых|ую|юю|ая|яя|ою|ею)$");
-const std::regex Stemmer::PARTICIPLE = std::regex("(.*)(ивш|ывш|ующ)$|([ая])(ем|нн|вш|ющ|щ)$");
-const std::regex Stemmer::VERB = std::regex("(.*)(ила|ыла|ена|ейте|уйте|ите|или|ыли|ей|уй|ил|ыл|им|ым|ен|ило|ыло|ено|ят|ует|уют|ит|ыт|ены|ить|ыть|ишь|ую|ю)$|([ая])(ла|на|ете|йте|ли|й|л|ем|н|ло|но|ет|ют|ны|ть|ешь|нно)$");
-const std::regex Stemmer::NOUN = std::regex("(а|ев|ов|ие|ье|е|иями|ями|ами|еи|ии|и|ией|ей|ой|ий|й|иям|ям|ием|ем|ам|ом|о|у|ах|иях|ях|ы|ь|ию|ью|ю|ия|ья|я)$");
-const std::regex Stemmer::I = std::regex("и$");
-const std::regex Stemmer::P = std::regex("ь$");
-const std::regex Stemmer::NN = std::regex("(нн|н)$");
-const std::regex Stemmer::DERIVATIONAL = std::regex(".*[^аеиоуыэюя]+[аеиоуыэюя].*ость?$");
-const std::regex Stemmer::DER = std::regex("ость?$");
-const std::regex Stemmer::SUPERLATIVE = std::regex("(ейше|ейш)$");
-std::string Stemmer::stem(std::string word)
+std::vector<std::string> Stemmer::regArr;
+std::string Stemmer::VOVELS;
+std::string Stemmer::EMPTY;
+std::string Stemmer::S1;
+std::string Stemmer::S13;
+std::string Stemmer::SN;
+
+std::regex Stemmer::PERFECTIVE;
+std::regex Stemmer::REFLEXIVE;
+std::regex Stemmer::ADJECTIVE;
+std::regex Stemmer::PARTICIPLE;
+std::regex Stemmer::VERB;
+std::regex Stemmer::NOUN;
+std::regex Stemmer::I;
+std::regex Stemmer::P;
+std::regex Stemmer::NN;
+std::regex Stemmer::DERIVATIONAL;
+std::regex Stemmer::DER;
+std::regex Stemmer::SUPERLATIVE;
+
+bool Stemmer::init()
+{
+
+  std::ifstream regStringsIS("../dataset/stemmerStrings.txt");
+  if (!regStringsIS.is_open())
+     regStringsIS = std::ifstream("../../dataset/stemmerStrings.txt");
+  if (!regStringsIS.is_open())
+    regStringsIS = std::ifstream("../../../dataset/stemmerStrings.txt");
+  std::string str;
+  while (std::getline(regStringsIS, str))
+  {
+    regArr.push_back(str);
+  }
+  regStringsIS.close();
+
+ VOVELS = regArr[0];
+ EMPTY = "";
+ S1 = regArr[1];
+ S13 = regArr[2];
+ SN = regArr[3];
+
+
+ PERFECTIVE = std::regex(regArr[4]);
+ REFLEXIVE = std::regex(regArr[5]);
+ ADJECTIVE = std::regex(regArr[6]);
+ PARTICIPLE = std::regex(regArr[7]);
+ VERB = std::regex(regArr[8]);
+ NOUN = std::regex(regArr[9]);
+ I = std::regex(regArr[10]);
+ P = std::regex(regArr[11]);
+ NN = std::regex(regArr[12]);
+ DERIVATIONAL = std::regex(regArr[13]);
+ DER = std::regex(regArr[14]);
+ SUPERLATIVE = std::regex(regArr[15]);
+ return true;
+}
+
+
+
+
+const bool Stemmer::initInvoker = Stemmer::init();
+
+ std::string Stemmer::stem(std::string word)
 {
   // make word lowercase
   transform(word.begin(), word.end(), word.begin(), ::tolower);
-  replace(word.begin(), word.end(), 'ё', 'е');
+  replace(word.begin(), word.end(), '�', '�');
   std::string temp = std::regex_replace(word, PERFECTIVE, EMPTY);
   if (word.size() != temp.size())
   {

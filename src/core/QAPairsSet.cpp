@@ -1,4 +1,4 @@
-ï»¿#include <algorithm>
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-const std::string QAPairsSet::delimetrs = " ,.!?\"()Â«Â»"; // delimiters
+const std::string QAPairsSet::delimetrs = " ,.!?\"()«»"; // delimiters
 
 void QAPairsSet::addPair(const std::string & question, const std::string & answer)
 {
