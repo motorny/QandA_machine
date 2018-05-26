@@ -6,6 +6,7 @@
 */
 #include <QString>
 #include <QtTest>
+#include <vector>
 
 #include "QAMachineCore.h"
 /*! 
@@ -25,8 +26,14 @@ class QAUnitTests : public QObject
 
 public:
   QAUnitTests();
-
+  /*! \brief Container for cp-1251 strings used for tests
+  */
+  std::vector<std::string> dataStrArr;
+  
+  /*! \brief Additaional path appendix
+  */
   std::string relPath = "";
+  
   private Q_SLOTS:
   /*! \brief Data for VocabularyTest()
   */
