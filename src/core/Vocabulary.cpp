@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
-
+#include <iomanip>
 #include <sstream>
 #include "Vocabulary.h"
 
@@ -34,8 +34,12 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
   string word;
 
   // iterate through lines of dataFile
+  cout << "Parsing lines of datafile:" << endl;
+  int lineCnt = 1;
   while (std::getline(qAPairsIFS, pairStr))
   {
+    cout << '\r';
+    cout << lineCnt++;
     //get question and answer strings
     question = pairStr.substr(0, pairStr.find(';'));
     answer = pairStr.substr(pairStr.find(';') + 1);
@@ -52,7 +56,10 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
     while ((end = question.find_first_of(delimetrs, start)) != string::npos)
     {
       word = question.substr(start, end - start);
+      transform(word.begin(), word.end(), word.begin(), ::tolower);
+#ifdef USE_STEMMER
       word = Stemmer::stem(word);
+#endif // USE_STEMMER
       tempMap[word]++;
       //find next word's start
       start = question.find_first_not_of(delimetrs, end);
@@ -61,10 +68,14 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
     if (start != string::npos)
     {
       word = question.substr(start);
+      transform(word.begin(), word.end(), word.begin(), ::tolower);
+#ifdef USE_STEMMER
       word = Stemmer::stem(word);
+#endif // USE_STEMMER
       tempMap[word]++;
     }
   }
+  cout << endl;
   qAPairsIFS.close();
   // File parsing ended
 
@@ -90,11 +101,17 @@ void Vocabulary::generateVocabularyFromQAFile(const string & dataFileName, const
   }
   rejectedWordsIFS.close();
 
-  // resave as vector and calcualate idf
+  // resave as vector 
+  cout << "Resaving map as vector:" << endl;
+  int wordCnt = 1;
+  vocabulary.reserve(tempMap.size());
   for (auto &w : tempMap)
   {
+    cout << '\r';
+    cout << wordCnt++;
     vocabulary.emplace_back(WordPair(w.first, (double)w.second));
   }
+  cout << endl;
 }
 
 void Vocabulary::ReadFromTempFile(const string & dataFileName)
@@ -119,7 +136,7 @@ void Vocabulary::ReadFromTempFile(const string & dataFileName)
 
   /*while (!vocabOStream.eof())
   {
-    
+
     vocabOStream >> word;
     vocabOStream >> idf;
     cout << word << "--------" << idf << endl;
@@ -171,7 +188,10 @@ std::vector<int> Vocabulary::parseStrByVocabInds(std::string & str) const
   while ((end = str.find_first_of(delimetrs, start)) != string::npos)
   {
     word = str.substr(start, end - start);
+    transform(word.begin(), word.end(), word.begin(), ::tolower);
+#ifdef USE_STEMMER
     word = Stemmer::stem(word);
+#endif // USE_STEMMER
     if ((wordInd = this->getWordInd(word)) != -1)
     {
       // check for wordInd uniquenss
@@ -194,6 +214,9 @@ std::vector<int> Vocabulary::parseStrByVocabInds(std::string & str) const
     word = str.substr(start);
     // make word lowercase
     transform(word.begin(), word.end(), word.begin(), ::tolower);
+#ifdef USE_STEMMER
+    word = Stemmer::stem(word);
+#endif // USE_STEMMER
     if ((wordInd = this->getWordInd(word)) != -1)
     {
       // check for wordInd uniquenss

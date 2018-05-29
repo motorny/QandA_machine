@@ -2,9 +2,10 @@
 #define __VOCABULARY_H__
 #pragma once
 
+
 #include <string>
 #include <vector>
-
+#include "GlobalDefines.h"
 #include "QApairsSet.h"
 /*! \brief Class to store vocabulary and handle all work with it 
 *

@@ -117,8 +117,6 @@ void QAMachineCore::printAnswer(void)
     std::cout << ">>>> Question: " << pairsQAset[option.first].question << " -> " <<
       pairsQAset[option.first].answer << " (" << option.second << ")" << endl;
   
-#ifndef NDEBUG
-
     vector<int> indWordsQuestion = vocabulary.parseStrByVocabInds(currentQuestion);
     vector<int> indWordsOption = vocabulary.parseStrByVocabInds(pairsQAset[option.first].question);
     vector<int> indWordsCommon;
@@ -134,7 +132,7 @@ void QAMachineCore::printAnswer(void)
 
     std::cout << std::endl;
     std::cout << std::endl;
-#endif // NDEBUG
+
   }
 
   std::cout << "----------------------------------------------" << endl << endl;

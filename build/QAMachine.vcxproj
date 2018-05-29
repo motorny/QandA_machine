@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\core\GlobalDefines.h" />
     <ClInclude Include="..\src\core\IMachineCore.h" />
     <ClInclude Include="..\src\core\QAMachineCore.h" />
     <ClInclude Include="..\src\core\QAPairsSet.h" />

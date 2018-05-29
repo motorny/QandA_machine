@@ -27,9 +27,12 @@ void QAPairsSet::getIndexByVocab(Vocabulary & vocabulary)
     wP.idf = 0.0;
   }
 
-
+  cout << "Indexing sentenses:" << endl;
+  int sentenseCnt = 1;
   for (auto &qaP : pairsArr)
   {
+    cout << '\r';
+    cout << sentenseCnt++;
     qaP.wordIndeces = vocabulary.parseStrByVocabInds(qaP.question);
 
     // increase df for all words, which was met
@@ -40,12 +43,16 @@ void QAPairsSet::getIndexByVocab(Vocabulary & vocabulary)
 
     qaP.invEuqlidSize = 1 / sqrt((double)qaP.wordIndeces.size());
   }
-
+  cout << endl;
   // calculate idf as log(N/df) where N = document (question) count
+  cout << "Calculating IDF:" << endl;
+  sentenseCnt = 1;
   for (auto &wP : vocabulary) {
+    cout << '\r';
+    cout << sentenseCnt++;
     wP.idf = log((double)pairsArr.size() / wP.idf);
   }
-
+  cout << endl;
 }
 
 void QAPairsSet::ReadFromTempFile(const std::string & dataFileName)

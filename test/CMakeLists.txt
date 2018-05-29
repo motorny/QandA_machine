@@ -14,7 +14,7 @@ set(SOURCE tst_qaunittests.cpp)
 set(HEADER tst_qaunittests.h)
 
 set(SOURCE_CORE QAMachineCore.cpp QAPairsSet.cpp Stemmer.cpp Vocabulary.cpp)
-set(HEADER_CORE QAMachineCore.h QAPairsSet.h Stemmer.h Vocabulary.h)
+set(HEADER_CORE QAMachineCore.h QAPairsSet.h Stemmer.h Vocabulary.h GlobalDefines.h)
 
 include_directories(../src/core)
 find_package(Qt5Core REQUIRED)

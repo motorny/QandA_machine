@@ -23,6 +23,8 @@
 #include "Vocabulary.h"
 #include "QApairsSet.h"
 
+#define USE_STEMMER
+
 /*! \defgroup Core Application core
  *  \brief This module defines base functionality
  */
