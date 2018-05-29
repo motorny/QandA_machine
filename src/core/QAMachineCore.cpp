@@ -63,8 +63,7 @@ list<pair<int, double>> QAMachineCore::findBest(vector<int> &queryInd)
 
 void QAMachineCore::askQuestion(std::string question)
 {
-  vector<int> queryInds;
-
+  
   // Remember current question for furtherer use
   currentQuestion = question;
 
@@ -103,10 +102,11 @@ void QAMachineCore::printAnswer(void)
   // Present best option as answer
   std::cout << "----------------------------------------------" << endl;
 
-  std::istringstream iss(currentQuestion);
-  int word_count = 0;
-  for (std::string w; iss >> w; ++word_count);
-  if (bestMatchInd.front().second / word_count < 4)
+  //std::istringstream iss(currentQuestion);
+  //int word_count = 0;
+  //for (std::string w; iss >> w; ++word_count);
+  
+  if (bestMatchInd.front().second / queryInds.size() <= 4)
     std::cout << "Answer will not be relevant!" << endl;
 
   std::cout << "Closest question: " << pairsQAset[bestMatchInd.front().first].question <<

@@ -116,10 +116,12 @@ public:
 private:
   Vocabulary vocabulary; //!< Vocabulary of words
   QAPairsSet pairsQAset; //!< Cached database of question-answer and metainformation
-
+  
   std::string currentQuestion; //!< Current question asked
                                /*!< Is used in analysis that might be needed after
                                 *   processing in askQuestion is complete */
+
+  std::vector<int> queryInds; //!< Indeces of question string returned with parseStrByVocabInds funtion
 
   static const std::string delimetrs;//!< String of delimetrs
                                      /*!< Contains all delimetrs, which are used to
