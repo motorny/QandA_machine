@@ -4,6 +4,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iterator>
+#include <regex>
 
 #include "QAMachineCore.h"
 
@@ -94,16 +95,25 @@ void QAMachineCore::printAnswer(void)
   // Check if answer is valid
   if (bestMatchInd.front().second == -1) 
   {
-    std::cout << "There is no simular question, so we can't get answer!" << endl;
+    std::cout << "There is no similar question, so we can't get answer!" << endl;
     
     return;
   }
 
   // Present best option as answer
   std::cout << "----------------------------------------------" << endl;
+
+  std::istringstream iss(currentQuestion);
+  int word_count = 0;
+  for (std::string w; iss >> w; ++word_count);
+  if (bestMatchInd.front().second / word_count < 4)
+    std::cout << "Answer will not be relevant!" << endl;
+
   std::cout << "Closest question: " << pairsQAset[bestMatchInd.front().first].question <<
      " -> " << pairsQAset[bestMatchInd.front().first].answer << "(" << bestMatchInd.front().second << ")" << endl;
   std::cout << std::endl;
+
+  
   std::cout << ">> Other options: " << endl;
 
   // list other options from bestMatch as well
